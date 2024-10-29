@@ -1,0 +1,15 @@
+
+public class Employee {
+
+	int empId;			//instance variables / fields / data members 
+	String name;
+	double salary;
+	
+	
+	public void showEmployee() {
+		System.out.println("Emp ID: " + empId);
+		System.out.println("Employee Name : "+ name);
+		System.out.println("Salary : "+ salary);
+	}
+	
+}

@@ -1,0 +1,24 @@
+
+public class Helloworld {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int a = 10;
+		
+		sayHello();
+		
+		System.out.println("helloworld!");
+		
+		System.out.println("value of a : " + a);
+	
+		int b = 30;
+		
+		int c = 645;
+	}
+
+	
+	public static void sayHello() {
+		int a = 20;
+	}
+}
