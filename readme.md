@@ -430,24 +430,53 @@ Classes and objects
                     has-a Engine
                 }
 
+    Inheritance 
+    -------------------
+        - reusability 
+        - maintainability 
+        - extendibility 
+
+    - inheriting members (public) of the superclass in subclass 
+    - inheritance creates IS-A relationship between classes 
+    - using the 'extends' keyword we can inherit a class to another class 
+    - in java, we can extend only 1 class at a time 
+
+            BankAccount
+                |
+                |-customerID
+                |-AccountNo
+                |-openAcc()
+                |-closeAcc()
+                |-deposit()
+                |-withdraw()
+                |
+    ------------------------------------------------------------
+    SavingAcc           CurrentAcc              FixedDepositAcc
+      |-                    |                       |
+      |
+--------------
+SalaryAcc   NormalSavingAcc
+
+
+    - SavingACC Is-A BankAccount
+    - SalaryAcc IS-A SavingAccount
+    - SalaryAcc IS-A BankAccount
+
+    **IMP: A variable of superclass can reference to an object of subclass
+
+        BankAccount bankAcc = new BankAccount();
+
+        SavingAcc savingAcc = new SavingAcc();
+
+        BankAccount bankACc = new SavingAcc();
+
+         BankAccount bankACc = new SalaryAcc();
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                Customer customer = new Customer();     //
 
 
 
@@ -481,22 +510,203 @@ Inheritance
 
 Abstract Classes & Abstract Methods 
 -----------------------------------------
+    - a class defined using 'abstract' keyword 
+    - we cannot create instance of abstract class 
+    - abstract classes created to act only as a superclass, with common properties/methods to be inherited by their subclasses
+    - abstract class constructors are invoked by the subclass
 
 
+Abstract methods
+-------------------------
+    - if a class has an abstract method, then the class must be marked 'abstract'
+    - an abstract has no definition
+
+        public abstract void methodA();
+    - an abstract method must be overridden by its immediate child class 
 
 
 Interface
 ------------------------
+    - in interface is similar to a class
+    - interface contains only public abstract methods and public final data members
+    - a class can implement the interface using 'implements' keyword and can override the   methods 
+    - a class can implment several interfaces 
+    - an interface can extend from several interfaces
 
+    **IMP : interfaces are used to define set of requirements a class has to implement
+
+        interface Taxable {
+
+            //public final variables 
+
+            //public abstract methods
+            public abstract double calculateTax(double taxRate);
+        }
+
+        interface Discountable{
+
+            public abstract double calculateDiscount(double discountRate);
+        }
+
+        class ElectronicProduct extends Product implements Taxable, Discountable {
+
+        }
+
+        class HomeDeliveryService implements Taxable {
+
+        }
 
 
 Method Overrideing 
 -------------------------
+    - when a superclass method is re-defined in the subclass using the exact same signature, it is called method overriding 
+    - we can override the methods of superclass to have child specific behavior of the same method
+
+
+    *IMP: rules for method overriding 
+
+        rule1: only inherited methods can be overridden 
+                    - only public, protected and default methods of the superclass 
+                            can be overridden 
+
+                    class A {
+                        
+                        public void methodB(){
+
+                        }
+
+                        public final void methodE(){
+
+                        }
+
+                        void MethodC(){
+
+                        }
+
+                        protected void methodD(){
+
+                        }
+
+                        private void methodA(){
+
+                        }
+                    }
+
+                    class B{
+
+                    }
+
+
+             Rule 2: Final and static methods cannot be overridden 
+
+             Rule 3: the overriding method must have same signature (same arguments)
+                         as the superclass 
+
+                    class A {
+
+                    }
+
+                    class B {
+
+                    }
+
+            Rule 4: overriding method must have the same return type or subtype of the       returntype
+
+                    class A {
+
+                        public User getUser(String userId){
+
+                        }
+                    }
+
+                    class B {
+
+                        public Customer getUser(String userId){
+                            
+                        }
+
+                        //public User getUser(String userId){
+                            
+                        }
+                    }
+
+            Rule 5: overriding method must not have more retrictive access modifier
+
+                    class A {
+
+                        protected void methodA(){
+
+                        }
+
+                    }
+
+                    class B {
+
+                         public void methodA(){
+                            
+                        }
+                    }
+
+                    default --> default, public, protected
+                    public --> public
+                    protected ---> protected, public 
+
+            Rule 6: overriding method must not throw exception or broder exceptions 
+                    class A {
+
+                        protected void methodA() throws RuntimeException {
+
+                        }
+
+                    }
+
+                    class B {
+
+                         public void methodA() throws RuntimeException {
+                            
+                        }
+                    }
+
 
 
 
 inner classes / nested classes
 -------------------------------------
+
+
+
+
+interface Singer {
+
+    void sing();
+}
+
+interface Dancer{
+
+    void dance();
+}
+
+interface TalentedStudent extends Singer, Dancer {
+
+}
+
+
+
+class Student implements TalentedStudent {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -517,3 +727,41 @@ PreIncrement
 
     sysout("i = " + i);     //11
     sysout("j = " + j);     //11
+
+
+
+    class Car {
+        brand
+        seatingCapacity
+        tpye
+        ..
+        ..
+
+        public abstract move();
+    }
+
+    class BMWCar extend Car {
+        public move(){
+            ..
+            ..
+            "this car moves fast"
+        }
+    }
+
+    class MercedesCar extends Car{
+        public move(){
+            ..
+            ..
+            "this car moves fast and smooth"
+        }
+    }
+
+        Car car = null;
+        
+        
+        car =  new BMWCar()
+        car.move();
+
+
+        car = new MercedesCar()
+        car.move();
