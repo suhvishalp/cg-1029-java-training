@@ -696,18 +696,173 @@ class Student implements TalentedStudent {
 
 }
 
+String in java 
+------------------
+    - in java, the String class (java.lang package) is used to construct a 'string'
+    - in java, String objects are 'immutable' 
+        - string objects cannot modified 
+
+        String str = "Welcome";
+
+    - String Pool
+        - separate section in the heap memory, where all the string objects are stored 
+            - the string objects those are created using 'string literal'
+        - whenever we create a new string literal, if the same string exists in the pool
+            JVM will return the ref to that object, instead of creating new objects every time
+        - ** creating a string using 'new' keyword will create the object in the heap memory
+
+    String class methods 
+    --------------------------------
+
+            boolean equals(String str)
+
+            boolean equalsIgnoreCase(String str)
+
+            int compareTo(String str)
+             -** compares the string with the given value and return a 'compare value' as in
+
+                > 1         - the string is greater than the given string
+
+                < 1         - the string is less than the given string
+
+                0           - both values are same
+
+
+            int indexOf(String st)
+
+            char charAt(int index)
+
+            boolean startsWith(String str)
+
+            boolean endsWith(String str)
+            
+            String	concat(String str)
+
+            String	replace(char oldChar, char newChar)     //welcome 
+
+                    replace('x', '*')
+
+            String	replace(CharSequence target, CharSequence replacement)
+                    Replaces each substring of this string that matches the literal target sequence with the specified literal replacement sequence.
+
+            String[]	split(String regex)
+                    Splits this string around matches of the given regular expression.
+
+            String	substring(int beginIndex)
+                    Returns a string that is a substring of this string.
+
+            String	substring(int beginIndex, int endIndex)
+                    Returns a string that is a substring of this string.
+
+            String	toLowerCase()
+                    Converts all of the characters in this String to lower case using the rules of the default locale.
+
+            String	toUpperCase()
+                    Converts all of the characters in this String to upper case using the rules of the default locale.
+
+            String	trim()
+                    Returns a string whose value is this string, with any leading and trailing whitespace removed.
+
+
+        StringBuilder and StringBuffer 
+        ----------------------------------
+            - both the classes are used to construct a 'mutable' string 
+
+                StringBuilder sb = new StringBuilder("Welcome");
+
+                StringBuffer sb = new StringBuffer("Welcome");
+
+
+       Handling Dates in Java 
+       ------------------------------
+
+            using java.util.Date class 
+            ----------------------------
+
+
+            
+
+
+            using Date and Time API (Java 8)
+            -----------------------------------
+
+
+        Regular Expression
+        --------------------------
+              REF:   https://www.vogella.com/tutorials/JavaRegularExpressions/article.html
+
+            - A regular expression (regex) defines a search pattern for strings
+
+            [abc]  - 
+
+            [a-z] - 
+
+            [A-Z] - 
+
+            [0-9]   - 
+
+            [0-9]{9} - 
+
+            [^abc] 
+
+            [^0-5] 
 
 
 
 
 
+            
+
+
+
+ String data = "Participant ID: 12345, Age: 29, Gender: M, Result: Positive\n" +
+                      "Participant ID: 67890, Age: 35, Gender: F, Result: Negative\n" +
+                      "Participant ID: 54321, Age: 41, Gender: M, Result: Positive";
+
+
+        String participantPattern = "Participant ID: (\\d+), Age: (\\d+), Gender: (\\w), Result: (\\w+)";
+
+
+
+//locate specific log information based on a pattern.
+ String logData = "2023-11-01 10:12:34 INFO User JohnDoe logged in\n" +
+                         "2023-11-01 10:15:40 ERROR Database connection failed\n" +
+                         "2023-11-01 10:18:12 INFO User JaneSmith logged out";
+
+        String logPattern = "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) (INFO|ERROR) (.+)";
+        Pattern pattern = Pattern.compile(logPattern);
+        Matcher matcher = pattern.matcher(logData);
+
+        while (matcher.find()) {
+            System.out.println("Date: " + matcher.group(1));
+            System.out.println("Level: " + matcher.group(2));
+            System.out.println("Message: " + matcher.group(3));
+            System.out.println();
+        }
 
 
 
 
+//pattern matching to validate the format of a phone number.
+String phoneNumber = "(123) 456-7890";
+        String phonePattern = "\\(\\d{3}\\) \\d{3}-\\d{4}";
 
+        if (Pattern.matches(phonePattern, phoneNumber)) {
+            System.out.println("Valid phone number format.");
+        } else {
+            System.out.println("Invalid phone number format.");
+        }
 
+//locate email addresses in a text using regular expressions.
+String text = "Contact us at support@example.com or sales@company.org.";
+        String emailRegex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
 
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            System.out.println("Found Email: " + matcher.group());
+        }
 
 
 
