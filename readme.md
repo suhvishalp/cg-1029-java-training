@@ -463,6 +463,7 @@ SalaryAcc   NormalSavingAcc
     - SalaryAcc IS-A BankAccount
 
     **IMP: A variable of superclass can reference to an object of subclass
+    **IMP: A variable of interface can reference to an object of it's implementation class
 
         BankAccount bankAcc = new BankAccount();
 
@@ -868,6 +869,10 @@ String data = "Participant ID: 12345, Age: 29, Gender: M, Result: Positive\n" +
                       "Participant ID: 67890, Age: 35, Gender: F, Result: Negative\n" +
                       "Participant ID: 54321, Age: 41, Gender: M, Result: Positive";
 
+    print count of participants having age beween 25-30, 30-35, and above 35
+    print count of participants by gender 
+    print count of positive and negative results 
+
 
 PostIncrement 
 
@@ -922,3 +927,234 @@ PreIncrement
 
         car = new MercedesCar()
         car.move();
+
+
+interface <InterfaceName>{
+    method1();
+    method2();
+    method3();
+}
+
+
+
+
+Wrapper classes
+-----------------------
+    - in java, for each primitive type i.e. int, byte, char etc there is a 
+        corresponding Refernce type (Class) avaialble  i.e. Integer, Byte, Character etc
+    - wrapper classes are used to represent a primitive as an object
+
+        byte            Byte 
+        short           Short 
+        int             Integer
+        long            Long 
+        float           Float
+        double          Double 
+        char            Character 
+        boolean         Boolean
+
+
+        Integer integer = 23;
+
+        **Auto-boxing 
+
+        **un-boxing 
+
+
+Object class
+----------------
+    - it is implicitely superclass for all the classes in java
+
+class Object {
+
+    boolean equals(Object o)
+   
+    int hashCode()
+
+    String toString()
+
+}
+
+class String {
+
+    //String class has already overridden the methods of the object class
+
+}
+
+class Employee {
+     String toString(){
+
+     }
+}
+
+
+    **IMP: overriding the 'toString()' 
+    -----------------------------------------
+        - to return a string representation of the object
+
+    **IMP: overriding the 'equals(Object o)' method
+    --------------------------------------------
+        - to compare two objects of the same type   
+        - while overriding the equals() you must satisfy the guidelies as per the 'equals() contract' 
+
+        - The equals() contract in Java is a set of rules that the equals() method must follow to ensure that objects are compared correctly. These rules are:
+            Reflexive: For any reference value x, x.equals(x) must return true
+            Symmetric: For any reference values x and y, x.equals(y) must return the same value as y.equals(x)
+            Transitive: For any reference values x, y, and z, if x.equals(y) and y.equals(z), then x.equals(z)
+            Consistent: For any reference values x and y, the results of x.equals(y) must remain the same as long as the equals method is not modified
+            Null Handling: For any non-null reference value x, x.equals(null) must return false 
+
+
+
+
+
+
+Collection Framework in java
+------------------------------------
+    - collections are used to create group of "objects"
+    - **IMP: we cannot store primitive values in collection
+
+                interface Iterable<E>
+                        |-> Iterator<T>	iterator()
+                        |
+                interface Collection<E> 
+                        |
+                        | -> boolean add(E e)
+                        | -> boolean	addAll(Collection<? extends E> c)
+                        | -> void clear()
+                        | -> boolean contains(Object o)
+                        | -> boolean isEmpty()
+                        | -> boolean remove(Object o)
+                        | -> int size()
+                        |
+        ---------------------------------------------------------------------------------
+ List<E> interface                       Set<E> interface                Queue<E> interface
+| void	add(int index, E element)                                                   |
+| E	remove(int index)                                                       ----------        
+| ListIterator<E>	listIterator()                                Deque<E>  BlockingQueue<E>
+| Iterator<E>	iterator()                                                          |
+                                                                        BlockingDeque<E> 
+
+
+    Collection<T> interface 
+        -- super interface for all the sub interfaces like List, Set, and Queue
+        - The root interface in the collection hierarchy.
+
+    List<E> interface
+        - sub interface of Collection<E>, which models An ordered collection (also known as a sequence) of  objects
+
+        - List allows duplicate elements 
+
+                    List<E> interface
+                        |
+                        |
+                    ArrayList<E>
+                    LinkedList<E>
+                    Stack<E>
+                    Vector<E>
+                    CopyOnWriteArrayList<E>
+
+
+    - below are the List implementation classes 
+
+            ArrayList<E>
+                - internally uses 'resizable-array' as a data structure 
+                - default capacity of arraylist is 10
+                    
+            LinkedList<E>    
+                - internally uses 'double linked list' data structure 
+                - faster than ArrayList, because it doesn't require shifting of elements while inserting/removing elements from the collection   
+                    
+            Vector<E>
+                - internally uses 'resizable-array' as a data structure
+                - Vector is thread-safe / synchronized 
+
+            Stack<E>
+                - internally uses 'resizable-array' as a data structure
+                - uses LIFO approach
+                - The Stack class represents a last-in-first-out (LIFO) stack of objects
+
+            
+            CopyOnWriteArrayList<E>
+
+
+
+        - how to create a list 
+        -----------------------
+
+            ArrayList list = new ArrayList();       //non-generic list, allows to store 
+                                                        //any type of elements 
+
+            LinkedList list = new LinkedList();
+
+            ArrayList<Integer> numsList = new ArrayList<>();        //generic list
+
+            ArrayList<Student> studList = new ArrayList<>();
+
+            List<Student> studList = new ArrayList<>();
+
+        - basic operations on lists
+        -----------------------------
+                - adding an element 
+
+                            boolean add(E e)
+                            void add(int index, E e);
+                            void addAll(Collection c);
+
+                - removing an element from a list 
+
+                            - boolean remove(Object o)
+                            - E	remove(int index)
+
+                - iterate over a list 
+                    - using a classic for loop
+                    - using enhaned for loop
+                    - using iterator
+
+                - search / find the given element 
+
+                        boolean contains(Object o)
+
+            **IMP: the contains() method internally uses the 'equals()' method to compare the given object with all other objects in the list
+
+
+    Set<E> interface 
+        - sub interface of Collection<E>, which model collection of unique objects 
+
+                 
+                 Set<E> interface
+                        |
+                        |
+             ----------------------------------------------------
+             HashSet<E>                     SortedSet<E> interface
+                |                                   |
+            LinkedHashSet<E>                   NavigableSet<E> interface 
+                                                    |
+                                                TreeSet<E>
+
+        - Below are the Set implementation classes 
+
+            HashSet<E>  
+                - internal data structure = hashtable
+                - doesn't gurantee the order of insersion 
+
+            LinkedHashSet<E> 
+                - internal data structure = hashtable + double linked list
+                - maintains insertion order
+
+            TreeSet<E>
+                - internal data structure = balanced tree
+                - maintains sorted order of elements 
+
+
+
+
+    Queue<E> interface
+        - - sub interface of Collection<E>, which models a collection where objects are stored in the form of a queue, with FIFO approach
+
+
+
+    Map<K,V> interface
+    ------------------------
+        - Map<k, V> inteface is used to model a collection of objects stored using
+                key-value pairs 

@@ -4,20 +4,23 @@ import java.util.Date;
 
 public class DateOperations {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args)   {
 		// TODO Auto-generated method stub
 		
 		Date date = new Date();
 		
 		 
+		try {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy");
-		Date date1 = sdf.parse("29-OCT-24");
 		
-		int month = date1.getMonth();
-		System.out.println("date1 month : "+ month);
+		Date date1 = sdf.parse("30-FEB-2024");
 		
-		System.out.println(sdf.format(date));
+			
 		System.out.println(sdf.format(date1));
+		}catch(ParseException ps) {
+			System.out.println(ps.getMessage());
+			System.out.println("Invalid Date");
+		}
 
 	}
 

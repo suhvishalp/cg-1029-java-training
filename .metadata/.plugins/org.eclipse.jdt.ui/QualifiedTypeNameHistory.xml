@@ -2,8 +2,18 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="Employee"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="CartLineItem"/>
     <fullyQualifiedTypeName name="Cart"/>
     <fullyQualifiedTypeName name="PaymentState"/>
+    <fullyQualifiedTypeName name="UserType"/>
+    <fullyQualifiedTypeName name="Customer"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="PlatinumCustomer"/>
+    <fullyQualifiedTypeName name="PremiumCustomer"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.lang.Character"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
 </qualifiedTypeNameHistroy>
