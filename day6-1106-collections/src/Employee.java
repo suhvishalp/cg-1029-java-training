@@ -46,11 +46,13 @@ public class Employee {
 		return "\n" + this.empId + " " + this.empName + " " + this.salary;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(empId, salary);
+	}
 
 	@Override
 	public boolean equals(Object obj) {
-		System.out.println("Employee class's equals() method called");
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -58,9 +60,29 @@ public class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		return empId == other.empId && Objects.equals(empName, other.empName)
-				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
+		return empId == other.empId && Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
 	}
+
+	
+//	public int hashCode() {
+//		return this.empName.hashCode() + new Integer(this.empId).hashCode() +
+//					new Double(this.salary).hashCode();
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		System.out.println("Employee class's equals() method called");
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Employee other = (Employee) obj;
+//		return empId == other.empId && Objects.equals(empName, other.empName)
+//				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
+//	}
+//	
 	
 	
 	

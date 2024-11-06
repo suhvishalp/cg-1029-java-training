@@ -1004,8 +1004,10 @@ class Employee {
             Consistent: For any reference values x and y, the results of x.equals(y) must remain the same as long as the equals method is not modified
             Null Handling: For any non-null reference value x, x.equals(null) must return false 
 
-
-
+  **IMP: equals() and hashCode() contract
+    ---------------------------------------------
+        - when equals() method is overriden in a class, hashCode() must also be overriden
+        - if two objects are equal to each other based on equals() method, then the hash    code must be the same, 
 
 
 
@@ -1158,3 +1160,37 @@ Collection Framework in java
     ------------------------
         - Map<k, V> inteface is used to model a collection of objects stored using
                 key-value pairs 
+
+
+
+
+Object class {
+
+    int hashCode()
+    boolean equals(Object obj)
+}
+
+class Movie{
+
+    int hashCode(){
+        return movie.name.length()
+    }
+
+    boolean equals(Object obj){
+
+    }
+}
+
+
+    Gujarish        Andhadhundh         DeadPool        Raw     War   Gajni
+    Mummy   Daddy       Mummy
+
+
+        3       -> Raw      -> War 
+
+        5       -> Gajni  -> Mummy -> Daddy
+
+        8       -> Gujarish -> DeadPool
+
+        11
+
