@@ -973,6 +973,10 @@ class Object {
 
     String toString()
 
+    wait()
+    notify()
+    notifyAll()
+
 }
 
 class String {
@@ -991,6 +995,7 @@ class Employee {
     **IMP: overriding the 'toString()' 
     -----------------------------------------
         - to return a string representation of the object
+        - Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object
 
     **IMP: overriding the 'equals(Object o)' method
     --------------------------------------------
@@ -1004,10 +1009,17 @@ class Employee {
             Consistent: For any reference values x and y, the results of x.equals(y) must remain the same as long as the equals method is not modified
             Null Handling: For any non-null reference value x, x.equals(null) must return false 
 
+
+    What is hashCode?
+    ------------------------
+        - hashCode is a number used to identify an object during it's execution
+        - If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result.
+    - 
+
   **IMP: equals() and hashCode() contract
     ---------------------------------------------
         - when equals() method is overriden in a class, hashCode() must also be overriden
-        - if two objects are equal to each other based on equals() method, then the hash    code must be the same, 
+        
 
 
 
@@ -1188,9 +1200,67 @@ class Movie{
 
         3       -> Raw      -> War 
 
-        5       -> Gajni  -> Mummy -> Daddy
+        5       -> Gajni  -> Mummy -> Daddy  
 
         8       -> Gujarish -> DeadPool
 
         11
 
+
+
+   interface Comparable<T>
+   --------------------------
+    - describes a method, which should be overridden by a class to provide the logic for sorting objects
+    - the compareTo() should return an integer representing the 'compare value' which is used while sorting
+
+
+            interface Comparable<T>{
+
+                int compareTo(T t);
+            }
+
+    interface Comparator<T> 
+    -----------------------------
+        - it is used to create multiple external comparators 
+
+              interface Comparator<T>{
+
+                int compare(T t1, T t2);
+            }
+
+
+     Map<K,V> interface
+    ------------------------
+        - Map<k, V> inteface is used to model a collection of objects stored using
+                key-value pairs 
+
+        - implementation classes of Map interface
+
+            - HashTable<K,V>
+                - doesn't allow null keys
+
+            - HashMap<K,V>
+                - doesn't gurantee order of insertion
+                - allows one null key
+
+            - LinkedHashMap<K,V>
+                - maintains order of insertion by keys
+
+            - TreeMap<K,V>
+                - maintains sorted order of 'keys'
+
+
+            Map map = new HashMap();
+
+            Map<Integer, String> map = new HashMap<>();
+
+            Map<Integer, Employee> map = new HashMap<>();
+
+            Map<Manager, List<Employee>>map = new HashMap<>();
+
+
+
+        iterate over a map
+        ------------------------
+
+                1. Collection<V> values()

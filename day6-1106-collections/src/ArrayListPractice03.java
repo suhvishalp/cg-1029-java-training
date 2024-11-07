@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ArrayListPractice03 {
@@ -32,6 +33,8 @@ public class ArrayListPractice03 {
 		empList.add(new Employee(105, "Devansh", 25000.00));
 
 		System.out.println(empList.contains(new Employee(103, "Dhruv", 20000.00)));
+		
+		Collections.sort(empList, new EmployeeSalaryComparator());
 		
 		System.out.println(empList);
 		

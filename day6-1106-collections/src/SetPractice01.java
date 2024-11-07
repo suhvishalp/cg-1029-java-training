@@ -8,14 +8,14 @@ public class SetPractice01 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Set<Integer> numsSet = new TreeSet<>();
+		Set numsSet = new HashSet();
 		
 		numsSet.add(10);
-		numsSet.add(40);
-		numsSet.add(20);
-		numsSet.add(50);
-		numsSet.add(30);
-		numsSet.add(20);
+		numsSet.add("Welcome");
+		numsSet.add(34.32F);
+		numsSet.add("Welcome");
+		numsSet.add(34.32);
+		numsSet.add("Helloworld");
 
 		System.out.println(numsSet);
 		

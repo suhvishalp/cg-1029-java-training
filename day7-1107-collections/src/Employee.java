@@ -64,31 +64,13 @@ public class Employee implements Comparable<Employee> {
 	}
 
 	@Override
-	public int compareTo(Employee o) {
+	public int compareTo(Employee other) {
 		// TODO Auto-generated method stub
-		return this.empName.compareTo(o.getEmpName());
+		
+		return this.empName.compareTo(other.getEmpName());
 	}
 
 	
-//	public int hashCode() {
-//		return this.empName.hashCode() + new Integer(this.empId).hashCode() +
-//					new Double(this.salary).hashCode();
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		System.out.println("Employee class's equals() method called");
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Employee other = (Employee) obj;
-//		return empId == other.empId && Objects.equals(empName, other.empName)
-//				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary);
-//	}
-//	
 	
 	
 	
