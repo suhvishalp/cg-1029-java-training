@@ -1268,3 +1268,46 @@ class Movie{
                 2. Set<K> keySet()
 
                 3. entrySet()
+
+
+    Functional Programming in Java
+    -----------------------------------
+
+
+        **IMP: Functional Interfaces in java 
+        -----------------------------------------
+                - an interface that has only 1 abstract method is called as functional
+                    interface 
+
+
+                - pre-defined functional interfaces 
+
+                    -> Comparator<T> interface
+
+                    -> Predicate<T> interface 
+                        - Represents a predicate (boolean-valued function) of one argument.
+
+                        interface Predicate<T>{
+                            boolean test(T t);
+                        }
+
+                    -> Function<T, R> interface
+                        - Represents a function that accepts one argument and produces a result
+                        
+                        interface Function<T, R>{
+                            R apply(T t)
+                        }
+
+                    -> Interface Consumer<T>
+                            - Represents an operation that accepts a single input argument and returns no result.
+
+                            void accept(T t)
+
+                    -> Interface Supplier<T>
+                            - represents a method that returns a value of type T, no arguments
+                           
+                            T	get()
+
+
+        **IMP: Lambda Expressions in Java
+        ------------------------------------------

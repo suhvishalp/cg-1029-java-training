@@ -20,11 +20,14 @@ import java.util.Set;
 	Create a method getRecommendationsForUser which takes a Map<String, Set<Product>> 
 	(where the key is a userId and the value is a Set of products that the user has viewed) and 
 	a String userId. The method should return a List<Product> containing product recommendations 
-	for the user based on other users' viewing habits. (Hint: Find other users who have viewed 
+	for the user based on other users' viewing habits. 
+	
+	(Hint: Find other users who have viewed 
 	similar products, and recommend products they viewed that the current user has not yet viewed.)
  */
 
 // Product class to represent each product with id, name, price, and category.
+
 class Product {
     private int id;
     private String name;
@@ -52,7 +55,7 @@ class Product {
 
     @Override
     public String toString() {
-        return name + " (" + category + ")";
+        return "\n" + name + " (" + category + ")";
     }
 }
 
@@ -64,6 +67,11 @@ class ProductService {
         List<Product> result = new ArrayList<>();
         //
         //
+        for(Product product: products) {
+        	
+        	if(product.getCategory().equalsIgnoreCase(category))
+        			result.add(product);
+        }
         
         return result;
     }
@@ -72,15 +80,34 @@ class ProductService {
     public Set<Product> getTopRatedProducts(Map<Product, Double> productRatings) {
         List<Map.Entry<Product, Double>> entries = new ArrayList<>(productRatings.entrySet());
         
+        
+        //entries 
+//        l1 - p1 : 4.7
+//        l2 - p2 : 4.5
+//        l3 - p3 : 4.8
         // Sort entries based on the rating value in descending order
+        
+        for(int i=0; i < entries.size(); i++) {
+        	
+        	for(int j=i+1; j<entries.size(); j++) {
+        		
+        		if(entries.get(j).getValue() > entries.get(i).getValue()) {
+        			Map.Entry<Product, Double > temp = entries.get(i);
+        			entries.set(i, entries.get(j));
+        			entries.set(j,  temp);
+        		}
+        		
+        	}
+        	
+        }
         
 
         // Select the top 3 products from the sorted list
         Set<Product> topRatedProducts = new HashSet<>();
         
-        //
-        //
-        
+        for(int i=0; i < Math.min(3, entries.size()); i++ ) {
+        	topRatedProducts.add(entries.get(i).getKey());
+        }
         
         return topRatedProducts;
     }
@@ -95,7 +122,19 @@ class ProductService {
         //
         //
         
-
+        Set<Map.Entry<String, Set<Product>>> entrySet = userViewedProducts.entrySet();
+         
+        for(Map.Entry<String, Set<Product>> entry: entrySet) {
+        	
+        	if(!entry.getKey().equals(userId)) {
+        		for(Product product : entry.getValue()) {
+        			if(!viewedByUser.contains(product)) {
+        				recommendations.add(product);
+        			}
+        		}
+        	}
+        }
+        
         return new ArrayList<>(recommendations);
     }
 }
@@ -120,26 +159,27 @@ public class Exercise1 {
 	        List<Product> products = Arrays.asList(p1, p2, p3, p4, p5);
 
 	        // Example: Get products by category
-	        System.out.println("Electronics Products: " + productService.getProductsByCategory(products, "Electronics"));
+//	        System.out.println("Electronics Products: " + productService.getProductsByCategory(products, "Electronics"));
 
 	        // Example: Get top-rated products
-	        Map<Product, Double> ratings = new HashMap<>();
-	        ratings.put(p1, 4.7);
-	        ratings.put(p2, 4.5);
-	        ratings.put(p3, 4.8);
-	        ratings.put(p4, 4.9);
-	        ratings.put(p5, 4.6);
-
-	        System.out.println("Top Rated Products: " + productService.getTopRatedProducts(ratings));
-
-	        // Example: Get recommendations for user
+//	        Map<Product, Double> ratings = new HashMap<>();
+//	        ratings.put(p1, 4.7);
+//	        ratings.put(p2, 4.5);
+//	        ratings.put(p3, 4.8);
+//	        ratings.put(p4, 4.9);
+//	        ratings.put(p5, 4.6);
+//
+//	        System.out.println("Top Rated Products: " + productService.getTopRatedProducts(ratings));
+//
+//	        // Example: Get recommendations for user
 	        Map<String, Set<Product>> userViewed = new HashMap<>();
+	        
 	        userViewed.put("user1", new HashSet<>(Arrays.asList(p1, p2)));
 	        userViewed.put("user2", new HashSet<>(Arrays.asList(p2, p3, p5)));
 	        userViewed.put("user3", new HashSet<>(Arrays.asList(p1, p4, p5)));
 
 	        System.out.println("Recommendations for user1: " + productService.getRecommendationsForUser(userViewed, "user1"));
-	   
+//	   
 	}
 
 }
