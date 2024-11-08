@@ -1264,3 +1264,7 @@ class Movie{
         ------------------------
 
                 1. Collection<V> values()
+
+                2. Set<K> keySet()
+
+                3. entrySet()
