@@ -1040,6 +1040,7 @@ Collection Framework in java
                         | -> boolean isEmpty()
                         | -> boolean remove(Object o)
                         | -> int size()
+                        | -> 
                         |
         ---------------------------------------------------------------------------------
  List<E> interface                       Set<E> interface                Queue<E> interface
@@ -1308,6 +1309,144 @@ class Movie{
                            
                             T	get()
 
+                    - Interface Collector
+
 
         **IMP: Lambda Expressions in Java
         ------------------------------------------
+
+
+
+        Stream API
+        ---------------------
+            - stream api is used to perform processing / operations on Strings, arrays
+                and collections 
+            - allows us to perform functional-style operations on collections, arrrays, strings
+            - Streams are sequences of data processed in a pipeline, and operations are performed lazily to optimize performance.
+
+            - a stream represents a sequence of elements supporting sequntial 
+                    or parallel operations 
+
+            Map<String, Integer> carMap = ....
+
+
+            String name = "amaze";
+
+            for(iterate over each entry in the map){
+
+                if(entry.getKey().equalsIgnorecase(name)){
+                    return true;
+                }
+            }
+
+            false;
+
+           Set<String> keySet = carMap.keySet();
+
+            Predicate<Integer> predicate = value -> value > 10;
+
+            Predicate<String> predicate = 
+
+           keySet.stream()
+                    .anyMatch(carName -> carName.equalsIgnoreCase(name))
+                     
+
+
+        Create Stream
+        ---------------------------
+
+                a. obtaining a stream from an array
+            
+                        int[] array = {23,32,23,54,45,45};
+
+                        Arrays.stream(array)
+
+                        Stream.of(array)
+
+                b. obtaining a stream from a file
+
+
+
+                c. obtaining a stream from a string 
+
+                         String str = "Wecome";
+		 
+		                 Stream.of(str);
+
+
+                d. obtaining a stream from a collection
+
+                        List<String> names = ....
+
+                        names.stream()
+
+
+        Stream Pipeline
+        --------------------------
+            - a stream is a pipeline of aggregate operations that can be evaluated 
+
+            - a source : can be a collection, an array, I/O channel, or string 
+
+            - zero/more intermedicate operations: produce a new stream i.e. filter, map, sorted etc.
+
+            - a terminal operation: produces a non-stream result such as 
+                    primitive value, a collection or void 
+
+
+        Types of operations performed on streams
+        -------------------------------------------
+
+            1. intermediate operations 
+                    - produces a new stream, 
+
+                    a. Stream filter(Predicate)
+                            The filter() operation returns a new stream that consists elements matching a given condition which is typically a boolean test in form of a Lambda expression.
+
+                    b. Stream map(Function)
+                        - The map operation returns a new stream consisting of elements which are the results of applying a given function to the elements of the current stream. 
+
+                        •	mapToInt(): transforms a stream of objects to a stream of int primitives.
+                        •	mapToLong(): transforms a stream of objects to a stream of long primitives.
+                        •	mapToDouble(): transforms a stream of objects to a stream of double primitives.
+
+
+                    c.Stream sorted(): sorts by default natural ordering
+                        •	Stream sorted(comparator): sorts by a comparator
+
+
+                    d. Stream limit()
+                        - The limit() operation returns a stream containing only a specified number of elements
+
+                    e. Stream distinct()
+                            - The distinct() operation returns a stream consisting of the distinct elements (no duplicates) by comparing objects via their equals() method.
+
+                    f. Stream skip()
+                        -  The skip() operation returns a stream containing the remaining elements after discarding the first n elements of the stream.
+
+            2. terminal operations 
+
+                    - produces a non-stream value, primitive, a collection or void
+                    - a stream pipeline always ends with a terminal operation which 
+                        returns a concrete value
+
+                    a. boolean allMatch(Predicate)
+
+                    b. boolean anyMatch(Predicate)
+
+                    c. boolean noneMatch(Predicate)
+
+                    d. long count()
+                         - The count() operation simply returns total number of elements in the stream. 
+
+                    e. void forEach(Consumer)
+
+                    f. R collect(Collector) 
+                        - The collect() operation accumulates elements in a stream into a container such as a collection. 
+
+                    g. Optional  min(comparator) 
+                            The min(comparator) is a special reduction operation that returns the minimum element in the stream according to the provided comparator. 
+
+                    h. Optional max(comparator)
+
+                    i. reduce()
+
