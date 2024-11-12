@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -60,8 +61,10 @@ public class StreamAPIPractice02 {
 		
 		Optional<Person> optionalPerson = personlist
 		 	.stream()
-		 	.min((Person person1, Person person2)-> 
-		 			((Integer)person1.getAge()).compareTo(person2.getAge()));
+		 	.min(Comparator.comparing(Person::getAge));
+		
+		 	//.min((Person person1, Person person2)-> 
+		 	//		((Integer)person1.getAge()).compareTo(person2.getAge()));
 		
 		if(optionalPerson.isPresent())
 			System.out.println(optionalPerson.get());

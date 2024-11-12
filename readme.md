@@ -1443,6 +1443,24 @@ class Movie{
                     f. R collect(Collector) 
                         - The collect() operation accumulates elements in a stream into a container such as a collection. 
 
+                        Collectors  class
+                        -----------------------
+
+                            - groupingBy
+                                    - Returns a Collector implementing a "group by" operation on input elements of type T, grouping elements according to a classification function, and returning the results in a Map.
+
+                                    groupingBy(Function)
+
+                            - mapping 
+
+                            - joining
+
+                            - comparing 
+
+                            - maxBy
+
+                            - minBy
+
                     g. Optional  min(comparator) 
                             The min(comparator) is a special reduction operation that returns the minimum element in the stream according to the provided comparator. 
 
@@ -1450,3 +1468,76 @@ class Movie{
 
                     i. reduce()
 
+        Method References in java
+        -----------------------------------
+            - Method references in Java provide a shorthand syntax for calling a method by referring to it directly, rather than invoking it explicitly. 
+
+        1.	Reference to a static method
+
+                class A {
+
+                    
+
+                    public static int square(int number){ 
+                        return number * number;
+                    }
+
+                    number -> number * number;
+                    
+                   
+
+                    psvm(){
+                        Function<Integer, Integer> function =    A::square;
+                    }
+                }
+
+
+        2.	Reference to an instance method of a particular object
+
+                    public class Greeting {
+                        
+                        public String sayHello() {
+                            return "Hello!";
+                        }
+
+                     public static void main(String[] args) {
+                            Greeting greeting = new Greeting();
+
+                            Supplier<String> supplier = greeting :: sayHello
+                            supplier.get()
+
+                     }
+
+
+                    }
+
+
+        3.	Reference to an instance method of an arbitrary object of a particular type
+
+                public class MethodReferenceExample {
+                    public static void main(String[] args) {
+                        List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+                        // Method reference to an instance method of an arbitrary object of a particular type
+                        names.forEach(String::toUpperCase);
+                        names.forEach(System.out::println)
+                    }
+                }
+In this example, String::toUpperCase is a method reference to the toUpperCase method of each String object in the list. It’s equivalent to (name) -> name.toUpperCase().
+
+        4.	Reference to a constructor
+
+
+                class Employee {
+                    public Employee() {
+                        System.out.println("Employee created!");
+                    }
+                }
+
+                public class MethodReferenceExample {
+                    public static void main(String[] args) {
+                        // Using method reference to refer to a constructor
+                        Supplier<Employee> employeeSupplier = Employee::new;
+                        
+                        Employee emp = employeeSupplier.get();
+                    }

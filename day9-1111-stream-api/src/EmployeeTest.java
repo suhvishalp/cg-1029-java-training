@@ -1,8 +1,11 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class EmployeeTest {
 
@@ -33,57 +36,91 @@ public class EmployeeTest {
         employees.add(new Employee(20, "Tina Green", "Engineering", 87000, LocalDate.of(2019, 9, 18), "Portland"));
 
 		
+        
 		
 	}
 	
 	//1. Find the Highest Paid Employee in Each Department 
 	public static Map<String, Optional<Employee>> findHighestPaidByDepartment(List<Employee> employees) {
-	    return null;
+	 
+		return employees
+				.stream()
+				.collect(
+						Collectors.groupingBy(Employee::getDepartment, 
+								Collectors.maxBy(Comparator.comparing(Employee::getSalary))
+								)
+						);
 	}
 	
 	//2. Calculate Average Salary for Employees Grouped by City
 	public static Map<String, Double> calculateAvgSalaryByCity(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.groupingBy(Employee::getCity,
+	                Collectors.averagingDouble(Employee::getSalary)));
 	}
 	
 	//3. Find All Employees Who Joined in a Specific Year
 	public static List<Employee> findEmployeesByJoiningYear(List<Employee> employees, int year) {
-	    return null;
+	    return employees.stream()
+	        .filter(e -> e.getJoiningDate().getYear() == year)
+	        .collect(Collectors.toList());
 	}
 	
 	// 4. Get Department-Wise Count of Employees
 	public static Map<String, Long> countEmployeesByDepartment(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
 	}
 	
 	// 5. List the Names of Employees in Each Department Sorted by Joining Date
 	public static Map<String, List<String>> listEmployeesByDeptSortedByJoiningDate(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	    		
+	        .sorted(Comparator.comparing(Employee::getJoiningDate))
+	        
+	        
+	        .collect(Collectors.groupingBy(Employee::getDepartment,
+	                Collectors.mapping(Employee::getName, Collectors.toList())));
 	}
 	
 	// 6. Filter and Display Names of Employees with Salary Above a Given Threshold and from a Specific City
 	public static List<String> findHighEarningEmployeesInCity(List<Employee> employees, double threshold, String city) {
-	    return null;
+	    return employees.stream()
+	        .filter(e -> e.getSalary() > threshold && city.equals(e.getCity()))
+	        .map(Employee::getName)
+	        .collect(Collectors.toList());
 	}
 	
 	//7. Partition Employees Based on Their Salary	
 	public static Map<Boolean, List<Employee>> partitionEmployeesBySalary(List<Employee> employees, double threshold) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.partitioningBy(e -> e.getSalary() > threshold));
 	}
 	
 	//8. Calculate the Total Salary Expenditure for Each Department
 	public static Map<String, Double> calculateTotalSalaryByDepartment(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.groupingBy(Employee::getDepartment,
+	                Collectors.summingDouble(Employee::getSalary)));
 	}
 	
 	//9. List Names of Employees Who Joined Most Recently in Each Department
 	public static Map<String, Optional<Employee>> findRecentJoinersByDepartment(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.groupingBy(Employee::getDepartment,
+	                Collectors.maxBy(Comparator.comparing(Employee::getJoiningDate))));
 	}
 	
 	//10. Calculate Median Salary for Each Department
 	public static Map<String, Double> calculateMedianSalaryByDepartment(List<Employee> employees) {
-	    return null;
+	    return employees.stream()
+	        .collect(Collectors.groupingBy(Employee::getDepartment,
+	                Collectors.collectingAndThen(Collectors.mapping(Employee::getSalary, Collectors.toList()),
+	                    list -> {
+	                        Collections.sort(list);
+	                        int size = list.size();
+	                        return size % 2 == 0 ? (list.get(size / 2 - 1) + list.get(size / 2)) / 2.0 : list.get(size / 2);
+	                    })));
 	}
 
 
