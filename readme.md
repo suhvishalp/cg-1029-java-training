@@ -1605,7 +1605,7 @@ In this example, String::toUpperCase is a method reference to the toUpperCase me
     Exception class                                             Error class
         |                                                        - represents serious problems
         |                                                                |
-        |                                                        OutOfMemoryError
+        |                                                            OutOfMemoryError
         |                                                       StackOverflowError
         |                                                       VirtualMachineError
         |
