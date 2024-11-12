@@ -1,10 +1,13 @@
-import java.time.LocalDate;
+	import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EmployeeTest {
@@ -35,9 +38,59 @@ public class EmployeeTest {
         employees.add(new Employee(19, "Sam Walker", "HR", 58000, LocalDate.of(2018, 6, 27), "Minneapolis"));
         employees.add(new Employee(20, "Tina Green", "Engineering", 87000, LocalDate.of(2019, 9, 18), "Portland"));
 
-		
         
-		
+        
+    		   
+    		   
+        
+   
+       //Collectors.toMap
+//       Map<String, Employee>  map =  employees
+//        	.stream()
+//        	//intermediate operations
+//        	//terminal operations
+//        		.collect(Collectors.toMap(Employee::getName, employee -> employee));
+        
+        
+        
+        //Collectors.counting()
+//        long count = employees.stream()
+//        		.collect(Collectors.counting());
+//        
+//        System.out.println("Count of employees : " + count);
+//		
+        
+        //Collectors.joining()  
+//       String commaSeparatedString =  employees
+//        	.stream()
+//        	.map(employee -> employee.getName())
+//        	.collect(Collectors.joining(", "));
+//       
+//       System.out.println(commaSeparatedString);
+        
+//       employees
+//        		.stream()
+//        		.collect(
+//        				Collectors.groupingBy(Employee::getDepartment,
+//        						Collectors.mapping(Employee::getDepartment, 
+//        								Collectors.toList()))
+//        				
+//        				);
+//        		
+        
+       Map<Boolean, List<Employee>> map = employees.stream()
+        	.collect(
+        			Collectors.partitioningBy(employee -> employee.getSalary()>= 70000)
+        			);
+
+       for(Map.Entry<Boolean, List<Employee>> entry: map.entrySet()) {
+    	   System.out.println("key: " + entry.getKey());
+    	   
+    	   	for(Employee emp: entry.getValue()) {
+    	   		System.out.println("\t " + emp);
+    	   	}
+       }
+        
 	}
 	
 	//1. Find the Highest Paid Employee in Each Department 

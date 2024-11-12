@@ -1451,15 +1451,60 @@ class Movie{
 
                                     groupingBy(Function)
 
+                                    Counting elements in each group:
+                                    
+                                    Map<String, Long> countByDepartment = people.stream()
+                                            .collect(Collectors.groupingBy(Person::getDepartment, Collectors.counting()));
+
+                                    Finding the highest-paid employee in each department:
+                                        Map<String, Optional<Person>> highestPaidByDepartment = people.stream()
+                                            .collect(Collectors.groupingBy(Person::getDepartment, 
+                                                                        Collectors.maxBy(Comparator.comparing(Person::getSalary))));
+
+                            - partitionBy
+                                    The partitioningBy collector is similar to groupingBy, but it divides elements into two groups based on a predicate. It produces a Map<Boolean, List<T>>, with keys true and false.
+
+                                Suppose you want to partition people based on whether their salary is above 50,000:
+                                        Map<Boolean, List<Person>> partitionedBySalary = people.stream()
+                                            .collect(Collectors.partitioningBy(person -> person.getSalary() > 50000));
+                                            
+
+                            - counting 
+
+                                    long count = people.stream().collect(Collectors.counting());
+
                             - mapping 
 
+                                - The mapping collector transforms the elements before collecting them, often used as a downstream collector for groupingBy.
+                                - Suppose you want to group people by department and get a list of names in each department:
+
+                                Map<String, List<String>> namesByDepartment = people.stream()
+                                    .collect(Collectors.groupingBy(Person::getDepartment, 
+                                                                Collectors.mapping(Person::getName, Collectors.toList())));
+
+
                             - joining
+                                - The joining collector concatenates strings. It is especially useful for joining values with delimiters.
+
+                                String names = people.stream()
+                                                .map(Person::getName)
+                                                .collect(Collectors.joining(", "));
 
                             - comparing 
 
-                            - maxBy
+                            - maxBy(comparator)
 
-                            - minBy
+                            - minBy(comparator)
+
+                            - toMap
+                                - The toMap collector collects elements into a Map and allows you to specify keys and values.
+
+                                    Map<String, Person> personMap = people.stream()
+                                         .collect(Collectors.toMap(Person::getName, person -> person));
+
+                            - toSet
+
+                            - toList
 
                     g. Optional  min(comparator) 
                             The min(comparator) is a special reduction operation that returns the minimum element in the stream according to the provided comparator. 
