@@ -1586,3 +1586,69 @@ In this example, String::toUpperCase is a method reference to the toUpperCase me
                         
                         Employee emp = employeeSupplier.get();
                     }
+
+
+    Exception Handling 
+    -----------------------
+
+
+            a. problem occurs 
+            b. inform the error has occured - new object of exception and throw it
+            c. receive the error information - catch the exception in the 'catch' block
+            d. take corrective actions - handle the exception 
+
+
+
+                Throwable (superclass)
+                    |
+    --------------------------------------------------------------------
+    Exception class                                             Error class
+        |                                                        - represents serious problems
+        |                                                                |
+        |                                                        OutOfMemoryError
+        |                                                       StackOverflowError
+        |                                                       VirtualMachineError
+        |
+        |
+---------------------------------------------------------------------------------------------
+RuntimeExpcetion                IOException             SQLException            InvalidAgeException     ..      ..
+   |
+   |->ArrayIndexOutofBoundsExpcetion
+   |->NullPointerException
+   |->InputMismatchException
+   |->ArithmeticException
+   |->IllegalArgumentException
+   |->...
+
+
+   **IMP: Checked Expcetions 
+            - all the checked exceptions must be handled using try-catch block or declared to be thrown
+
+   **IMP Unchecked exceptions 
+            - are not necessarily be handled using try-catch block, they can be handled by the "default exception handler"
+            - all the RuntimeExpcetions are unchecked
+
+
+    "default exception handler"
+    ----------------------------------
+
+
+
+    try-catch block 
+    -----------------------
+        - used to handle the exeption 
+        - use the 'try' block for the code to be monitored 
+        - use the 'catch' block for handling the exception and take corrective actions
+
+    throw keyword
+    -----------------
+        - used to create and throw an object of exception, in case something goes wrong based on the business logic 
+
+
+    throws keyword
+    --------------------
+        - it declars the exception to be handled either by developer (try-catch) or the default exception handler
+
+
+    finally 
+    --------
