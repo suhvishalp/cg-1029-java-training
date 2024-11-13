@@ -1611,7 +1611,7 @@ In this example, String::toUpperCase is a method reference to the toUpperCase me
         |
         |
 ---------------------------------------------------------------------------------------------
-RuntimeExpcetion                IOException             SQLException            InvalidAgeException     ..      ..
+RuntimeExpcetion                IOException             SQLException           InvalidAgeException     ..      ..
    |
    |->ArrayIndexOutofBoundsExpcetion
    |->NullPointerException
@@ -1631,7 +1631,13 @@ RuntimeExpcetion                IOException             SQLException            
 
     "default exception handler"
     ----------------------------------
-
+        - the default exception handler is a part of the runtime system that handles exceptions that are not caught by any other exception handler
+        - How it works
+            When an exception occurs in a method, the method creates an exception object that contains information about the exception, such as its name, description, and location. The method then passes the exception object to the Java Virtual Machine (JVM). 
+        - What happens next
+            The JVM searches the call stack for a method that contains an exception handler. If it finds a handler, the exception is moved to that handler. If no handler is found, the JVM continues searching up the call stack, moving to the caller method, and so on. 
+        - What happens if no handler is found
+            If no handler is found by the time the main() method is reached, the JVM delegates the exception to the default exception handler. The default exception handler prints the exception information to the console and stops the program abnormally
 
 
     try-catch block 
