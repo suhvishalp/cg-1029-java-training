@@ -1658,3 +1658,107 @@ RuntimeExpcetion                IOException             SQLException           I
 
     finally 
     --------
+
+
+
+    Comparator<Employee> comparator = new Comparator<Employee>(){
+
+        public int compare(Employee e1, Employee e2){
+            //..
+            //..
+        }
+
+    };
+    
+    Comparator<Employee> comparator = (Employee e1, Employee e2){
+            //..
+            //..
+        };
+
+    class EmployeeComparator implements Comparator<Employee>{
+        public int compare(Employee e1, Employee e2){
+            //..
+            //..
+        } 
+    }
+
+
+
+
+   interface Runnable 
+   ------------------------
+    - Runnable interface is used to represent a 'task' that can be executed inside  a thread
+
+    Runnable runnable = new Runnable(){
+        @override
+        public void run(){
+            //code that could be executed inside a thread
+        }
+    };
+
+    class MyTask implemenets Runnable{
+        @override
+        public void run(){
+            //code that could be executed inside a thread
+        }
+    }
+
+    Thraead thread = new Tread(new MyTask())
+
+    Thread thread = new Thread(new Runnable(){
+        @override
+        public void run(){
+            //code that could be executed inside a thread
+        }
+    });
+
+    Thread thread = new Thread(()- > {
+            //code that could be executed inside a thread
+        })
+
+    Thread
+    ---------
+        - sub process
+
+
+    Thread class 
+    ---------------
+
+
+
+    Thread class methods 
+    -----------------------------
+        static sleep();
+
+
+
+    How to create a thread in java
+    ---------------------------------------
+
+            Thread thread1 = new Thread(Runnable)
+
+            class MyThread extends Thraed{
+
+                //override run
+                public void run(){
+
+                }
+            }
+
+            Thread thread1 = new MyThread();
+
+    start a thread
+    ------------------------
+        thread.start();
+
+    * How to pause a thread:
+        You can make the currently running thread pauses its execution by invoking the static method sleep(milliseconds) of the Thread class. Then the current thread is put into sleeping state. Here’s how to pause the current thread:
+
+    * How to interrupt a thread:
+        Interrupting a thread can be used to stop or resume the execution of that thread from another thread. 
+
+
+    * How to make a thread waits other threads?
+        This is called joining and is useful in case you want the current thread to wait for other threads to complete. After that the current thread continues running. For example:
+                        t1.join();
+        This statement causes the current thread to wait for the thread t1 to complete before it continues. In the following program, the current thread (main) waits for the thread t1 to complete:
