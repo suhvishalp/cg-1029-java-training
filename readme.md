@@ -1925,3 +1925,129 @@ SQL - structured query language
                                                     |-> descendingIterator()
                                                     |
                                                 TreeSet<E> class
+
+
+
+    JDBC 
+    -------
+     - java database connectivity 
+     - JDBC is just a specification / standard for the DB Systems
+
+
+    
+
+     - Driver interface 
+        - - **IMP: Every DB system implements these specifications and provide 'Driver' class which is actually responsible to communicate with the db 
+
+    - There are 4 types of drivers
+
+        TYPE 1 DRIVER 
+            - JDBC-ODBC Bridge Driver)
+
+
+        TYPE 2 DRIVER 
+            - (Native-API, mostly c/c++ libraries)
+
+
+        TYPE 3 DRIVER 
+            - network driver / (JDBC-Net, Pure Java driver)
+
+        **TYPE 4 DRIVER
+        -------------------
+            - Thin Driver / (NATIVE-PROTOCOL, Pure Java driver)
+
+
+- database systems 
+    - RDBMS databases 
+        Here are some relational database management systems (RDBMSs):
+        - MySQL: An open source RDBMS that's known for its speed, reliability, and usability 
+        - PostgreSQL: A popular RDBMS 
+        - MariaDB: A popular RDBMS 
+        - Microsoft SQL Server: A complex RDBMS that offers full control 
+        - Oracle Database: An RDBMS that's known for its scalability, security, and varied feature set 
+        - Azure SQL: A cloud-based RDBMS from Microsoft that's used for small database applications 
+        - IBM Db2: An RDBMS from IBM that supports object-relational and non-relational structures 
+        - SQLite: A public domain database engine that belongs to the embedded, relational database management - systems family 
+        - Redis: An open source, NoSQL, key-value database management system 
+        - Elasticsearch: A distributed, RESTful search and analytics engine
+
+    - NON-RDBMS databases / NO-SQL databases 
+        - mongoDB
+        - dynamoDB
+        - couchDB
+    
+
+        DriverManager class 
+        ----------------------
+            - manages the driver classes 
+
+        Connection class 
+        ------------------------
+            - represents the connection with the db
+
+        Driver Class 
+        -------------
+            - responsible to communicate with the db
+
+        
+        Statement class 
+        -----------------
+            - represent a sql command  / sql instructions and execute the commands
+
+
+
+
+        Database url patterns and drive classes 
+        ----------------------------------------------
+
+        postgreSQL          jdbc:postgresql://localhost:5432/<<dbname>>             org.postgresql.Driver
+
+        h2 database         jdbc:h2:~/test                                          org.h2.Driver
+
+        mysql database      jdbc:mysql://localhost:3306/<<dbname>>                  com.mysql.cj.jdbc.Driver
+
+       
+
+       Steps to connect with the database
+       -----------------------------------------
+
+        1. load the driver class 
+
+                Class.forName("DRIVER CLASS NAME");
+
+        2. establish / create connection with the database 
+
+                    DriverManager.getConnection("URL","USERNAME","PASSWORD");    
+            
+        3. create a Statement object to represent sql commands 
+
+             Statement statement =   connection.createStatement();
+
+
+        4. execute the statement 
+
+                int executeUpdate(String sql)
+                    - INSERT, UPDATE OR DELETE operations
+                    - it performs the INSERT/UPDATE/DELETE operation and returns an int representing the number of rows affected
+
+                ResultSet executeQuery(String sql)
+                    - SELECT
+
+                boolean execute(String sql)
+
+        5. close the connection
+
+
+
+            Statement  
+                |
+                |
+            PreparedStatement  
+                | -> it represents pre-compiled and parameterized query
+                |
+            CallableStatment 
+
+
+
+
+    
