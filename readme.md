@@ -1762,3 +1762,166 @@ RuntimeExpcetion                IOException             SQLException           I
         This is called joining and is useful in case you want the current thread to wait for other threads to complete. After that the current thread continues running. For example:
                         t1.join();
         This statement causes the current thread to wait for the thread t1 to complete before it continues. In the following program, the current thread (main) waits for the thread t1 to complete:
+
+
+
+SQL - structured query language 
+    - it is language to interact with the "relational" database i.e. mysql, oracle, postgresql, etc.
+
+    1. DDL (data definition language) operations
+        - define and modify the structure of the database objects (i.e. tables, indexes, views, etc.)
+        - i.e create table, alter table, drop table, truncate table
+
+    2. DML (data manipulation language) operations  
+        - manipulate data withing the database tables
+        - i.e. INSERT, UPDATE, DELETE records
+
+    3. DQL (data query operations) operations
+        - retrieve data from the database 
+        - i.e. SELECT, WHERE, ORDER BY, GROUP BY
+
+    4. DCL (data control language) operations
+        - manage access to the database, such as granting and revoking permissions 
+        - i.e. GRANT, REVOKE 
+
+    5. TCL (Transaction control language) operations
+        - control transactions to maintain data integrity and consistency 
+        - i.e. BEGIN/START TRANSACTION, ROLLBACK, SAVEPOINT, COMMIT
+
+    6. Indexing and optimization operations 
+        - improve database performance, particularly data retrieval operations
+        - speed up the search we can create indexes
+        - i.e. CREATE INDEX, DROP INDEX
+
+    7. Operations related Views, stored procedures, functions
+
+    
+    8. Contraints and Schema management operations
+        - common constraints 
+            - PRIMARY KEY - ensure each row in a table is unique, 
+                            - it is used to represent a unique identifier for a row
+                            - each table can have only 1 primary key, (which can be single column or combination of columns)
+                                - simple primary key
+                                - composite primary key
+
+            - FOREIGN KEY - link two tables, represent relationship between tables
+            - UNIQUE - ensure unique values in a column
+                        - a table can have multiple unique columns
+            - CHECK     - validate data based on condition
+            - DEFAULT  - provides a default value for a column
+
+
+
+    product table
+----------------------
+    PK                             UNIQUE
+    id      prodname    price       sku     QRCODE      attributes      description
+    1                           
+    2
+    3
+
+
+
+
+            Iterable 
+                 |
+            Collection interface 
+                |
+    --------------------------------------------
+    Queue<E> interface                  List                Set
+        |
+    -----------------------------------------------------------------
+    Deque<E> interface           BlockingQueue<E> interface        PriorityQueue<E> class
+       |
+    --------------------------
+    BlockingDeque<E> interfaces
+
+
+    Queue<E> interface implementation classes 
+    ------------------------------------------------
+
+       ▪+ LinkedList: this class implements both List and Deque interface, thus having hybrid characteristics and behaviors of list and queue. Consider using a  LinkedList when you want fast adding and fast removing elements at both ends, plus accessing elements by index. 
+ 
+        ▪	+ PriorityQueue: this queue orders elements according to their natural ordering, or by a Comparator provided at construction time. Consider using a PriorityQueue when you want to take advantages of natural ordering and fast adding elements to the tail and fast removing elements at the head of the queue. 
+ 
+        ▪	+ ArrayDeque: a simple implementation of the Deque interface. Consider using an ArrayDeque when you want to utilize features of a double ended queue without list-based ones (simpler than a LinkedList). 
+
+
+        Concurrent Queue implementations: 
+            ▪	+ ArrayBlockingQueue: this is a blocking queue backed by an array. Consider using an ArrayBlockingQu0eue when you want to use a simple blocking queue that has limited capacity (bounded). 
+ 
+            ▪	+ PriorityBlockingQueue: Use this class when you want to take advantages of both PriorityQueue and BlockingQueue. 
+ 
+            ▪	+ DelayQueue: a time-based scheduling blocking queue. Elements added to this queue must implement the Delayed interface. That means an element can only be taken from the head of the queue when its delay has expired. 
+
+
+
+
+    Queue interface’s Methods
+    -----------------------------
+        insert operations           : add(e)                    offer(e)
+
+        remove operation            : remove()                  peek()
+
+        examine operations          : element()
+
+
+    Deque<E> interface methods
+    ------------------------------
+        insert operations           : add(e)                    offer(e)
+                                      addFirst(e)               offerFirst(e)
+                                      addLast(e)                offerLast(e)
+
+        remove operation            : remove()                  peek()
+                                      removeFirst()             pollFirst()
+                                      removeLast()              pollLast()
+
+        examine operations          : element()                 getLast() peekLast() 
+                                      getFirst() 
+                                      peekFirst() 
+
+    BlockingQueue interface’s methods
+    ----------------------------------------
+        insert operations           : add(e)                    offer(e)                put(e)
+
+        remove operation            : remove()                  peek()                  take()
+
+        examine operations          : element()                 poll()
+
+
+    BlockingDeque interface’s method
+    ----------------------------------------
+     insert operations           : add(e)                    offer(e)                put(e) 
+                                     addFirst(e)               offerFirst(e)
+                                      addLast(e)                offerLast(e)
+
+        remove operation            : remove()                  peek()                  take()
+                                      removeFirst()              pollFirst()
+                                      removeLast()              pollLast()
+
+        examine operations          : element()                 poll()
+
+
+
+
+
+            Set<E> interface
+                |
+                |
+            -------------------------------------------
+            HashSet<E> class                    SortedSet<E> interface
+                |                                   |
+                |                                   |-> SortedSet subSet(E fromElement, E toElement); 
+               |                                    |-> SortedSet headSet(E toElement); 
+                 |                                  |-> SortedSet tailSet(E fromElement); 
+
+            LinkedHashset<E> class                  |
+                                                NavigableSet<E> interface
+                                                    |-> lower(e)
+                                                    |-> floor(e)
+                                                    |-> ceiling(e)
+                                                    |-> higher(e)
+                                                    |-> descendingSet(): 
+                                                    |-> descendingIterator()
+                                                    |
+                                                TreeSet<E> class
