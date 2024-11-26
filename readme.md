@@ -1932,7 +1932,15 @@ SQL - structured query language
     -------
      - java database connectivity 
      - JDBC is just a specification / standard for the DB Systems
+     - jdbc is a standardized api for db operations
+     - supports multiple db through drivers
 
+
+    - jdbc architecture 
+        - API Layer
+        - Driver Manager
+        - Database specific drivers 
+        - Database engine i.e. mysql, postgresql, h2, ms sql server, oracle etc.
 
     
 
@@ -2040,14 +2048,141 @@ SQL - structured query language
 
 
             Statement  
+                |-> 
+                |-> int executeUpdate(String sql)
+                |-> ResultSet executeQuery(String sql)
+                |-> boolean execute(String sql)
                 |
                 |
             PreparedStatement  
                 | -> it represents pre-compiled and parameterized query
                 |
+                |-> int executeUpdate()
+                |-> ResultSet executeQuery()
+                |-> boolean execute()
+                |
+                |
             CallableStatment 
-
+                |
+                |-> boolean execute(String str)
 
 
 
     
+    BO - business objects 
+
+
+    DAO - Data access objects 
+
+
+    DTO - data transfer objects 
+
+
+    SO - service objects 
+
+
+    VO - value objects 
+
+    
+
+    JDBC Classes and interfaces
+    ---------------------------------
+        - DriverManager  class - manages the driver and connection
+        - Connection interface - represent a 'connection' with the db 
+        - Statement interface - represents a 'statement object'
+        - PreparedStatement - represents 'statement' that has a pre-compiled / parameterised query
+        - CallableStatement - it used to invoke functions/procedures
+        - ResultSet - represents set of table of data retrieved from the db
+                   ResultSet rs =         statement.executeQuery("selectcommand")
+
+        - ResultSetMetaData - represents data about the resultset
+
+        - DatabaseMetaData - represents info about the db
+
+            "Select a, b, c, d, from XYZ where someconditionmeets"
+
+            "Select a, b, c from XYZ where someconditionmeets"
+
+
+    CRUD Operations
+    ------------------------------
+        - INSERT 
+
+        - UPDATE 
+
+        - DELETE
+
+        - SELECT 
+
+
+    Handling ResultSet
+    --------------------------------
+        - getter methods - i.e. rs.getString("columnname"), rs.getInt("columnname"), ... : read data from resultset  
+
+        - boolean .next() - advances the cursor to the next row, return true if row is available 
+
+
+    ORM Frameworks - 
+    --------------------------
+        - Hibernate 
+        - TopLink
+        - iBatis
+
+
+    JPA - Java persistence API
+    ----------------------------------------
+        - JPA is standard/specification for managing "relational data" in java applications
+        - it provides the standard for ORM (Object Relation mapping) frameworks 
+
+        - Maps java objects to database tables
+        - uses annotations for configurations
+        - supports queuries using JPQL (Java persistence query language)
+
+        - in java,                                      in database
+
+            @Entity
+            class Employee {                            employee_table
+
+            }
+
+
+    Why JPA
+    ---------
+        - reduces the boilerplace/low level JDBC code 
+        - provides an abstraction layer for db interaction
+        - works with mulitple databases
+
+    JPA Implementations / JPA Providers 
+    -------------------------
+        - Hibernate JPA
+        - EclipseLink
+        - MyBatis 
+        - OpenJPA
+
+
+    Key Concepts in JPA
+    ------------------------------
+        - Entity : is a class mapped to a database table (is an object managed by JPA)
+        - how to create Entity class
+            - the class must be configured with the annotation @Entity
+            - the class must define an identifier column using @Id annotation   
+            - the class must have a no-arg constructor 
+
+                    @Entity
+                    class <<ClassName>> {
+
+                            @Id
+                            int id;
+
+                    }
+        - persistence.xml
+        --------------------
+            - this is a configuration file for JPA Provider
+
+        - Define "Persistence Unit"
+            - congiration for managing jpa entities
+
+
+        - EntityManager
+        -------------------------
+            - manages the persistence
