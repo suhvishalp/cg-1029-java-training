@@ -7686,3 +7686,19 @@ java.lang.IllegalArgumentException: release 19 is not found in the system
 	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
 	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jst.common.project.facet.core 4 -1 2024-11-26 16:10:50.455
+!MESSAGE Failed while parsing library definition file at "http://www.eclipse.org/webtools/dali/dev/eclipselink/eclipselink-downloadable-libs.xml".
+!STACK 0
+org.eclipse.wst.common.project.facet.core.util.internal.XmlParseException: org.xml.sax.SAXParseException; lineNumber: 6; columnNumber: 3; The element type "hr" must be terminated by the matching end-tag "</hr>".
+	at org.eclipse.wst.common.project.facet.core.util.internal.DomUtil.doc(DomUtil.java:85)
+	at org.eclipse.jst.common.project.facet.core.libprov.user.internal.DownloadableLibrariesExtensionPoint.readLibraryDefinitions(DownloadableLibrariesExtensionPoint.java:219)
+	at org.eclipse.jst.common.project.facet.core.libprov.user.internal.DownloadableLibrariesExtensionPoint.list(DownloadableLibrariesExtensionPoint.java:172)
+	at org.eclipse.jst.common.project.facet.ui.libprov.user.internal.DownloadLibraryWizard$1.run(DownloadLibraryWizard.java:74)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 6; columnNumber: 3; The element type "hr" must be terminated by the matching end-tag "</hr>".
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at java.xml/javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:122)
+	at org.eclipse.wst.common.project.facet.core.util.internal.DomUtil.doc(DomUtil.java:77)
+	... 4 more

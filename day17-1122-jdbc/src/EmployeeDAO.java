@@ -2,6 +2,12 @@ import java.sql.Connection;
 import java.util.List;
 
 public class EmployeeDAO {
+	
+	private EntityManager entityManger;
+	
+	public EmployeeDAO(EntityManager manager) {
+		this.entityManger = manager;
+	}
 
 	
 	public Employee addEmployee(Employee employee) {
