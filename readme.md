@@ -2174,6 +2174,8 @@ SQL - structured query language
                             @Id
                             int id;
 
+                            no-arg constructor
+
                     }
         - persistence.xml
         --------------------
@@ -2186,3 +2188,126 @@ SQL - structured query language
         - EntityManager
         -------------------------
             - manages the persistence
+
+
+    **Reflection API
+    ---------------------
+
+    **Proxy Instances / objects
+    -----------------------------
+
+
+    Spring Framework
+    ---------------------------
+        - standardizes the process of developing the application s
+    
+        - Spring Core 
+            -> provides fundamental features of spring framework 
+                - IOC - inversion of control
+                - Depedency injection
+
+        - Spring WEB 
+            -> Spring MVC - framework for web applications 
+            -> Spring REST - framework for REST APIs
+            
+
+        - Spring Data 
+            -> provides tools to interact with the database and it simplifies data access layers 
+            -> Spring Data JPA
+            -> Spring Data MongoDB
+            -> Spring Data Redis
+            -> Spring Data REST
+
+        - Spring Cloud 
+            -> supports building cloud native, distributed applications like service discovery, 
+                config management services, load balancing services, api gateway services
+            -> Spring Cloud Config
+            -> Spring cloud Gateway
+            -> Spring Cloud Netflix
+            -> Spring Cloud OpenFeign
+            -> Spring Cloud Circuit Breaker
+
+        - Spring AOP 
+            -> aspect oriented programming for cross-cutting concerns 
+                - logging, transactino management etc.
+
+        - Spring Boot 
+            -> simplifies the configuration of your application
+            -> auto-configuration
+
+        - Spring Security 
+            -> implement authentication and authorization
+
+        - Spring Integration 
+
+        - Spring Batch
+
+        - Spring GraphQL
+
+
+
+- Spring Core 
+-----------------------
+            -> provides fundamental features of spring framework 
+            -> IoC Container, Events, Resources, i18n, Validation, Data Binding, Type Conversion, SpEL, AOP, AOT.
+                
+                - IOC - inversion of control
+                    -> process of delegating the responsibility of creating objects to someone else 
+                        i.e "IOC Container"
+
+                    -> IoC container
+                        Manages the instantiation and wiring of objects, also known as beans, and their dependencies. 
+                        The IoC container uses configuration metadata, such as XML or annotations, to create, configure, 
+                        and manage objects. 
+                        
+                        The two types of IoC containers in Spring are BeanFactory and ApplicationContext. 
+                            1. Spring core container
+                                Creates an extra layer to store beans and their relationships. 
+                                This layer is created by scanning code and establishing hierarchical levels. 
+
+                                BeanFactory 
+
+                                ApplicationContext
+                                    - ClassPathXmlApplicationContext
+                                    - AnnotationConfigApplicationContext
+                                    - FileSystemXmlApplicationContext
+                                    - 
+
+                            2. Web container
+                                    Manages the lifecycle of servlets, maps URLs to servlets, and ensures that the requester has the correct access rights. The web container handles requests to servlets, JSP files, and other files with server-side code
+
+                        BeanFactory 
+
+                        ApplicationContext 
+
+                        WebApplicationContext
+
+
+
+
+
+
+
+                - Depedency injection
+                    - Dependency injection (DI) is a specialized form of IoC,
+
+
+                    EmailService            
+                    
+                    class BankService{
+
+                        EmailService emailService;
+
+                        public BankService(EmailService emailService){
+                            this.EmailService = EmailService;
+                        }
+                    }
+
+            - Spring Bean Configuration 
+            -----------------------------
+                -> definition for object creation, initialization, and removal
+
+
+            -> Spring Bean
+            ------------------
+                -> "object" managed by the IOC Container

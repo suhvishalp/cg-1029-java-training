@@ -4,6 +4,8 @@ package com.demo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class UserInterface {
 
@@ -38,6 +40,9 @@ public class UserInterface {
 //		Employee emp = entityManager.find(Employee.class, 101);
 //		entityManager.remove(emp);
 //		entityManager.getTransaction().commit();
+		
+		
+		
 		
 	}
 
