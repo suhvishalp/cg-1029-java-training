@@ -10,7 +10,7 @@ public class EmployeeService {
 		System.out.println("EmployeeService object is created");
 	}
 
-	public EmployeeService(EmployeeDAO employeeDAO) {
+	public EmployeeService(EmployeeDAO employeeDAO, int count, String url) {
 		super();
 		this.employeeDAO = employeeDAO;
 		System.out.println("EmploeyeeSerivce object is created and initialized");

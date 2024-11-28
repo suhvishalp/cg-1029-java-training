@@ -2266,6 +2266,7 @@ SQL - structured query language
                                 This layer is created by scanning code and establishing hierarchical levels. 
 
                                 BeanFactory 
+                                    - XMLBeanFactory
 
                                 ApplicationContext
                                     - ClassPathXmlApplicationContext
@@ -2276,15 +2277,9 @@ SQL - structured query language
                             2. Web container
                                     Manages the lifecycle of servlets, maps URLs to servlets, and ensures that the requester has the correct access rights. The web container handles requests to servlets, JSP files, and other files with server-side code
 
-                        BeanFactory 
+                       
 
-                        ApplicationContext 
-
-                        WebApplicationContext
-
-
-
-
+                                 WebApplicationContext
 
 
 
@@ -2303,11 +2298,33 @@ SQL - structured query language
                         }
                     }
 
+
+            -> Spring Bean
+            ------------------
+                -> "object" managed by the IOC Container
             - Spring Bean Configuration 
             -----------------------------
                 -> definition for object creation, initialization, and removal
 
 
-            -> Spring Bean
-            ------------------
-                -> "object" managed by the IOC Container
+                1. using xml configuration 
+
+                           <beans xmlns="http://www.springframework.org/schema/beans"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xsi:schemaLocation="
+                                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+                                <!-- bean definitions here -->
+                                <bean id="employeeDAO" class="com.demo.dao.EmployeeDAO" />
+                                    
+                                <bean id="employeeService1" class="com.demo.services.EmployeeService">
+                                    <constructor-arg name="employeeDAO" ref="employeeDAO" />
+                                </bean>
+
+                                 <bean id="employeeService2" class="com.demo.services.EmployeeService">
+                                    //different values to intialize
+                                 
+                                </bean>
+                        </beans>
+
+                2. using java configuration 
