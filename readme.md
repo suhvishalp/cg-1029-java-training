@@ -2200,6 +2200,11 @@ SQL - structured query language
     Spring Framework
     ---------------------------
         - standardizes the process of developing the application s
+        - spring framework is widely used framework for "enterprise java development".
+            - it supports robust,scalable and "loosely coupled application"
+        - key features of spring 
+            - "DI - Dependecy injection" - enables loose coupling by injecting object dependencies into other objects 
+            - "IOC" - shifts the control of object creation and life cycle management to Spring container
     
         - Spring Core 
             -> provides fundamental features of spring framework 
@@ -2207,8 +2212,8 @@ SQL - structured query language
                 - Depedency injection
 
         - Spring WEB 
-            -> Spring MVC - framework for web applications 
-            -> Spring REST - framework for REST APIs
+            -> Spring MVC - used to develop  web applications 
+            -> Spring REST - used to develop  REST APIs
             
 
         - Spring Data 
@@ -2268,7 +2273,7 @@ SQL - structured query language
                                 BeanFactory 
                                     - XMLBeanFactory
 
-                                ApplicationContext
+                                ApplicationContext (interface)
                                     - ClassPathXmlApplicationContext
                                     - AnnotationConfigApplicationContext
                                     - FileSystemXmlApplicationContext
@@ -2298,10 +2303,18 @@ SQL - structured query language
                         }
                     }
 
+    **IMP: POJO: Plain old java object - any class
+    **IMP: Java Bean - java object that follows certain coding conventions
+    **IMP: Spring Bean - java "object" managed by the IOC/Spring Container
+
 
             -> Spring Bean
             ------------------
-                -> "object" managed by the IOC Container
+                -> java "object" managed by the IOC/Spring Container
+                -> spring beans can be configured using xml/java based/annotation based configuration
+
+
+            
             - Spring Bean Configuration 
             -----------------------------
                 -> definition for object creation, initialization, and removal
@@ -2327,4 +2340,294 @@ SQL - structured query language
                                 </bean>
                         </beans>
 
+
+                        ApplicationContext context = new ClasspathXmlApplicationContext("spring-beans.xml");
+
                 2. using java configuration 
+
+                    @Configuration
+                    public class ApplicationConfig {
+                            
+                            @Bean
+                            public EmployeeService employeeService(){
+
+                                //create a new object of EmployeeService and return
+                                return new EmployeeService();
+                            }
+                    }
+
+                    ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+
+                3. annotation based configuration
+
+                        @Component 
+
+
+
+
+            Bean Life Cycle
+            -----------------------
+
+
+
+            Bean Scopes
+            -----------------------
+
+
+            Construction Injection 
+            ---------------------------
+
+
+
+            Setter Injection
+            --------------------------
+
+
+
+
+What is Dependency Injection?
+Definition: DI is a design pattern where an object's dependencies are provided externally by a container, rather than the object creating them itself.
+Why DI?
+Promotes loose coupling between components.
+Makes code easier to test and maintain.
+Example: Constructor and Setter Injection
+Classes and Dependencies
+
+
+package com.example;
+
+public class Engine {
+    private String type;
+
+    public Engine(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+
+
+package com.example;
+
+public class Car {
+    private Engine engine;
+
+    // Constructor Injection
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    public String getCarDetails() {
+        return "Car with engine type: " + engine.getType();
+    }
+}
+XML Configuration
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="engine" class="com.example.Engine">
+        <constructor-arg value="V8 Engine" />
+    </bean>
+
+    <bean id="car" class="com.example.Car">
+        <constructor-arg ref="engine" />
+    </bean>
+</beans>
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Car car = context.getBean("car", Car.class);
+        System.out.println(car.getCarDetails());
+    }
+}
+
+2. Difference Between Inversion of Control (IoC) and Dependency Injection (DI)
+
+IoC (Inversion of Control)
+Definition: The container takes control of creating and managing objects, rather than the application managing them.
+
+How It Works: IoC can be achieved through mechanisms like Dependency Injection and Service Locator.
+DI (Dependency Injection)
+Definition: A pattern where dependencies are injected into an object by a container.
+How It Works: DI is one way to implement IoC.
+
+Feature	IoC	DI
+Focus	Manages control over the application's flow.	Focuses on injecting dependencies.
+Implementation	Achieved using DI or Service Locator pattern.	A design pattern under IoC.
+Container's Role	Manages object lifecycle and relationships.	Provides dependencies.
+
+3. Injecting Objects by Constructor Injection
+Definition
+Constructor Injection is the process of passing dependencies through the constructor during object creation.
+Example
+
+XML Configuration
+
+
+<bean id="engine" class="com.example.Engine">
+    <constructor-arg value="Diesel Engine" />
+</bean>
+
+<bean id="car" class="com.example.Car">
+    <constructor-arg ref="engine" />
+</bean>
+
+
+public class Car {
+    private Engine engine;
+
+    public Car(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void display() {
+        System.out.println("Car Engine: " + engine.getType());
+    }
+}
+
+4. Dependency Injection by Setter Method
+Definition
+Setter Injection involves injecting dependencies using setter methods after the object is constructed.
+Example
+
+
+public class Car {
+    private Engine engine;
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public void display() {
+        System.out.println("Car Engine: " + engine.getType());
+    }
+}
+XML Configuration
+
+<bean id="engine" class="com.example.Engine">
+    <property name="type" value="Petrol Engine" />
+</bean>
+
+<bean id="car" class="com.example.Car">
+    <property name="engine" ref="engine" />
+</bean>
+
+5. Bean Scopes
+        Definition
+        Bean scope defines the lifecycle and visibility of a bean in the Spring container.
+       
+        Types of Bean Scopes
+           1. Singleton (Default): Single instance per Spring container.
+           2. Prototype: New instance for each request i.e. when we use the getBean() method
+           3. Request: Scoped to an HTTP request (web applications).
+           4. Session: Scoped to an HTTP session (web applications).
+           5. Global Session: Scoped to a global HTTP session (web applications).
+            Example
+
+        Singleton Scope
+
+            <bean id="singletonBean" class="com.example.SingletonClass" scope="singleton" />
+
+            @Scope("singleton")
+
+        Prototype Scope
+
+            <bean id="prototypeBean" class="com.example.PrototypeClass" scope="prototype" />
+
+
+6. Bean Lifecycle in Spring
+        Definition
+        The lifecycle of a bean includes creation, initialization, use, and destruction.
+        Lifecycle Phases
+
+        1. Instantiation: Spring creates the bean.
+        2. Dependency Injection: Dependencies are injected.
+        3. Initialization: Custom initialization logic i.e init method
+        4. Destruction: Custom destruction logic - i.e. destroy method
+        
+        Using init-method and destroy-method
+        Example
+
+        class    EmployeeDAO {
+
+        }
+
+        class EmployeeService {
+
+            private EmployeeDAO DAo;
+            private String xyz;
+            private int abc;
+
+            public void setAbc(int value){
+                
+            }
+
+        }
+
+
+public class MyBean {
+    public void init() {
+        System.out.println("Bean is going through initialization.");
+    }
+
+    public void destroy() {
+        System.out.println("Bean will be destroyed.");
+    }
+}
+
+XML Configuration
+    <bean id="myBean" class="com.example.MyBean" init-method="init" destroy-method="destroy" />
+
+JAVA Configuration 
+
+    Class EmployeeDAO implements InitializingBean, DisposableBean {
+
+        @Override
+	    public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		
+	    }
+
+        @Override
+        public void destroy() throws Exception {
+            // TODO Auto-generated method stub
+            
+        }
+    }
+
+Annotation based configuration  
+
+    Using @PostConstruct and @PreDestroy
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+public class MyBean {
+    @PostConstruct
+    public void init() {
+        System.out.println("Bean initialized with @PostConstruct.");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("Bean destroyed with @PreDestroy.");
+    }
+}
+
+
+
+
+
+REFERENCES for Spring
+https://www.geeksforgeeks.org/spring/
+https://github.com/onsever/spring-framework-notes
