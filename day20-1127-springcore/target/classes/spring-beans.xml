@@ -5,7 +5,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <bean id="employeeDAO" class="com.demo.dao.EmployeeDAO" init-method="myOwnCustomMethodForInit" scope="prototype" />
+    <bean id="employeeDAO" class="com.demo.dao.EmployeeDAO" 
+    	init-method="myOwnCustomMethodForInit" destroy-method="someDestroy" scope="prototype" />
         
     <bean id="employeeService" class="com.demo.services.EmployeeService">
     	<constructor-arg name="employeeDAO" ref="employeeDAO" />

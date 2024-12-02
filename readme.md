@@ -2625,9 +2625,50 @@ public class MyBean {
 }
 
 
-
-
-
 REFERENCES for Spring
 https://www.geeksforgeeks.org/spring/
 https://github.com/onsever/spring-framework-notes
+
+
+Spring Boot 
+--------------------
+    - framework built on top of the spring framework
+    - it simplifies the development of spring based applications 
+    - it provides "Auto Configuration" which eliminate the need for extensive configuration 
+
+
+    How Auto Configuration works in spring boot
+    ----------------------------------------------
+
+
+    *IMP: Features of Spring Boot
+        1. auto configuration 
+
+        2. embedded server 
+
+        3. starter depedencies 
+
+        4. spring boot cli 
+
+        5. Spring boot actuator 
+
+        
+
+Spring Data JPA
+----------------------------
+
+        - ORM Framework (Object relation mapping) - maps a java object to a relational table
+            - hibernate
+            - iBatis
+            - TopLink
+
+        - JPA - Java persistence api - JPA is the standard /specification for ORM framework
+        
+        - JPA Providers
+            - Hibernate JPA
+            - EclipseLink
+            - MyBatis
+
+        - Spring Data JPa
+            - wrapper aroung JPA and JPA Provider 
+            - provides "Repository" pattern to persist the data
