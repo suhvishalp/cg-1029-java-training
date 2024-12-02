@@ -2652,7 +2652,7 @@ Spring Boot
 
         5. Spring boot actuator 
 
-        
+
 
 Spring Data JPA
 ----------------------------
@@ -2671,4 +2671,46 @@ Spring Data JPA
 
         - Spring Data JPa
             - wrapper aroung JPA and JPA Provider 
+            - by default it uses 'hibernate' as a jpa provider
             - provides "Repository" pattern to persist the data
+            - provides support for creating JPA repositories by extending the Spring Data repository interfaces.
+
+            interface Repository<T, ID>
+                    |
+                    |
+            interface CrudRepository<T, ID>
+                    |
+                    |-> long count()
+                    |-> void delete(T entity)
+                    |-> void deleteAll()
+                    |-> void deleteById(ID id)
+                    |-> Iterable<T> findAll()
+                    |-> Optional<T> findById(ID id)
+                    |-> <S extends T> S save(S entity)
+                    |
+            interface PagingAndSortingRepository<T, ID>
+                    |
+                    |-> Page<T> findAll(Pageable pageable)
+                    |-> Iterable<T> findAll(Sort sort)
+                    |
+                    |
+            inteface JpaRepository<T, ID>       
+                    |
+                    |-> List<S> findAll(Example<S> example) 
+                    |-> List<T> findAll()
+                    |-> <S extends T> S saveAndFlush(S entity) 
+
+ 
+
+
+
+
+
+
+
+**IMP: Marker interface in java
+--------------------------------------------
+    - interface which has no methods defined in it
+
+Spring DATA JPA REFERECE
+https://www.petrikainulainen.net/spring-data-jpa-tutorial/#:~:text=Creating%20repositories%20that%20use%20the,CRUD%20operations%20for%20our%20entities.
