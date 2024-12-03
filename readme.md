@@ -2701,10 +2701,301 @@ Spring Data JPA
                     |-> <S extends T> S saveAndFlush(S entity) 
 
  
+    Spring Data JPA Relationships
+    ------------------------------------
+
+    class Department {                          class Employee {
+
+        int deptId;                                     int empId;  
+        String deptName;                                String empName;
+        
+        @OneToMany(mappedBy="department")               String city;
+        List<Employee> employees;                       double salary;
+
+                                                        @OneToOne()
+                                                        Department department;
+
+    }                                            }
+
+    
+        deptTable                       employeeTable                                           FK
+        deptId      deptName           empId       empName         city            salary       FK_deptId
+
+
+
+        department_employee
+        ---------------------
+        deptId      empId
 
 
 
 
+
+
+    class Product  {                                    class Catogory {
+
+            int productid                                       int catId;
+            String productname;                                 String catName;
+
+            @OneToOne(mappedBy="category")                       @OneToOne 
+            Category category;                                  Product product;
+
+
+    }                                                      }
+
+    productTable                                       categorytable
+    productid   productname     FK_catid                catid       catName         FK_productId
+
+
+
+    @OneToOne               JoinColumn
+    @ManyToOne              JoinColumn 
+
+    @OneToMany              JoinTable
+    @ManyToMany             JoinTable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In Spring Data JPA, relationships between entities map to database associations. They are modeled using JPA annotations.
+
+Key Types of Relationships:
+@OneToOne: One entity is associated with exactly one other entity.
+@OneToMany: One entity is associated with multiple entities.
+@ManyToOne: Many entities are associated with one entity.
+@ManyToMany: Many entities are associated with many other entities.
+
+Default Strategies for Relationships in Tables
+
+Relationship	Foreign Key Placement	    Join Table Default	        Cascade Default
+@OneToOne	    Owning side holds FK	    @JoinTable if configured	No cascading by default.
+@OneToMany	    Owning side holds FK	    Not applicable	            No cascading by default.
+@ManyToOne	    Many-side holds FK	        Not applicable	            No cascading by default.
+@ManyToMany	    Join table for both	        @JoinTable required	        No cascading by default.
+
+3.Relationships
+    - @OneToOne
+        Definition: One entity is associated with exactly one other entity.
+    
+        Mapping Strategy:
+         Default: Foreign key in the owning side's table.
+    
+        Optional: Use @JoinColumn to specify the foreign key column.
+    
+     Example:
+        @Entity
+        public class Address {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String city;
+
+            @OneToOne(mappedBy = "address")
+            private User user;
+
+            // Getters and Setters
+        }
+
+        @Entity
+        public class User {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String name;
+
+            @OneToOne(cascade = CascadeType.ALL)
+            @JoinColumn(name = "address_id", referencedColumnName = "id")
+            private Address address;
+
+            // Getters and Setters
+        }
+
+        SQL Generated:
+        users table: address_id column holds the foreign key.
+        addresses table: Independent table with no foreign key back to users.
+
+    - @OneToMany
+        Definition: One entity is associated with multiple entities.
+        
+        Mapping Strategy:
+        Default: Foreign key in the child (many-side) table.
+        Use mappedBy to specify the relationship owner.
+        
+        Example:
+            @Entity
+            public class Department {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                private String name;
+
+                @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+                private List<Employee> employees;
+
+                // Getters and Setters
+            }
+
+            @Entity
+            public class Employee {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                private String name;
+
+                @ManyToOne
+                @JoinColumn(name = "department_id")
+                private Department department;
+
+                // Getters and Setters
+            }
+
+            SQL Generated:
+            employees table: department_id column holds the foreign key.
+
+    - @ManyToOne
+        Definition: Many entities are associated with one entity.
+        
+        Mapping Strategy:
+        Default: Foreign key in the child (many-side) table.
+        
+        Example:
+        @Entity
+        public class Order {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+
+            @ManyToOne
+            @JoinColumn(name = "customer_id")
+            private Customer customer;
+
+            // Getters and Setters
+        }
+
+        @Entity
+        public class Customer {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String name;
+
+            // Getters and Setters
+        }
+
+        SQL Generated:
+        orders table: customer_id column holds the foreign key.
+
+    - @ManyToMany
+        Definition: Many entities are associated with many others.
+        
+        Mapping Strategy:
+        Default: A join table is created to maintain associations.
+        
+        Example:
+        @Entity
+        public class Author {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String name;
+
+            @ManyToMany(cascade = CascadeType.ALL)
+            @JoinTable(
+                name = "author_book",
+                joinColumns = @JoinColumn(name = "author_id"),
+                inverseJoinColumns = @JoinColumn(name = "book_id")
+            )
+            private List<Book> books;
+
+            // Getters and Setters
+        }
+
+        @Entity
+        public class Book {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String title;
+
+            @ManyToMany(mappedBy = "books")
+            private List<Author> authors;
+
+            // Getters and Setters
+        }
+
+        SQL Generated:
+        author_book table: Holds author_id and book_id as foreign keys.
+
+
+        Cascading
+        ----------
+        Allows operations (persist, merge, remove, etc.) performed on a parent entity to cascade to its child entities.
+        
+        Cascade Types:
+            PERSIST: Propagate persist operation.
+            MERGE: Propagate merge operation.
+            REMOVE: Propagate remove operation.
+            REFRESH: Refresh entities.
+            DETACH: Detach entities from persistence context.
+            ALL: Apply all operations.
+        
+        Example:
+
+        @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+        private List<Employee> employees;
+        Adding or removing employees in Department will automatically persist changes in the database.
+
+    Entity Inheritance
+    ------------------
+        Strategies:
+            SINGLE_TABLE (Default): A single table is used for all entity types.
+                                    Discriminator column differentiates between types.
+        
+            TABLE_PER_CLASS: A separate table is created for each entity type.
+       
+            JOINED: A base table is created for the parent entity, with joined tables for child entities.
+
+        Example:
+        @Entity
+        @Inheritance(strategy = InheritanceType.JOINED)
+        public class Vehicle {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String name;
+
+            // Getters and Setters
+        }
+
+        @Entity
+        public class Car extends Vehicle {
+            private int seatingCapacity;
+
+            // Getters and Setters
+        }
+
+        @Entity
+        public class Bike extends Vehicle {
+            private boolean hasGear;
+
+            // Getters and Setters
+        }
+
+        SQL Generated:
+            vehicle table: Contains common fields (id, name).
+            car table: Contains specific fields (seatingCapacity).
+            bike table: Contains specific fields (hasGear).
 
 
 
@@ -2714,3 +3005,75 @@ Spring Data JPA
 
 Spring DATA JPA REFERECE
 https://www.petrikainulainen.net/spring-data-jpa-tutorial/#:~:text=Creating%20repositories%20that%20use%20the,CRUD%20operations%20for%20our%20entities.
+
+
+
+Query Methods in Spring Data JPA
+
+Query methods are predefined methods in Spring Data JPA repositories that allow you to derive queries based on method names.
+
+Spring parses method names and generates SQL queries automatically.
+
+Syntax Rules:
+    Method names must follow the pattern findBy, readBy, or queryBy.
+    Use logical keywords like And, Or, Between, etc., to combine clauses.
+
+    Example:
+       - Single Property Query
+        List<Employee> findByDepartmentName(String departmentName);
+
+        Generated Query: SELECT * FROM employee WHERE department_name = ?
+
+       - Multiple Conditions
+        List<Employee> findByDepartmentNameAndAgeGreaterThan(String departmentName, int age);
+
+        Generated Query: SELECT * FROM employee WHERE department_name = ? AND age > ?
+
+        - Sorting
+        List<Employee> findByDepartmentNameOrderByAgeDesc(String departmentName);
+
+        Generated Query: SELECT * FROM employee WHERE department_name = ? ORDER BY age DESC
+
+        - Pagination
+        Page<Employee> findByAgeGreaterThan(int age, Pageable pageable);
+
+        Generated Query: Includes LIMIT and OFFSET clauses for pagination.
+
+
+     Custom Queries
+     --------------------
+        Custom queries allow you to define SQL or JPQL (Java Persistence Query Language) directly in repository methods using @Query.
+
+        JPQL Query
+        @Query("SELECT e FROM Employee e WHERE e.department.name = :departmentName")
+        List<Employee> findEmployeesByDepartment(@Param("departmentName") String departmentName);
+
+        Native SQL Query
+        @Query(value = "SELECT * FROM employee e WHERE e.department_id = ?1", nativeQuery = true)
+        List<Employee> findEmployeesByDepartmentId(Long departmentId);
+
+        Modifying Queries
+        Use @Modifying for update or delete operations.
+        @Modifying
+        @Query("UPDATE Employee e SET e.salary = :salary WHERE e.id = :id")
+        int updateEmployeeSalary(@Param("id") Long id, @Param("salary") Double salary);
+
+        Note: This Requires a transactional context, so annotate the service method with @Transactional.
+
+   Named Queries
+   ----------------
+      -  Named queries are pre-defined queries with unique names declared at the entity level.
+      - Useful for reusable and optimized queries.     
+
+      @Entity
+        @NamedQuery(
+            name = "Employee.findByDepartmentName",
+            query = "SELECT e FROM Employee e WHERE e.department.name = :departmentName"
+        )
+        public class Employee {
+            // Fields, Getters, Setters
+        }
+
+        Repository:
+        @Query(name = "Employee.findByDepartmentName")
+        List<Employee> findByDepartmentName(@Param("departmentName") String departmentName);
