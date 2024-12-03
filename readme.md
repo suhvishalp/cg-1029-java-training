@@ -2712,7 +2712,7 @@ Spring Data JPA
         @OneToMany(mappedBy="department")               String city;
         List<Employee> employees;                       double salary;
 
-                                                        @OneToOne()
+                                                        @ManyToOne
                                                         Department department;
 
     }                                            }
@@ -2757,14 +2757,102 @@ Spring Data JPA
 
 
 
+OneToOne BiDirectional Relationship
+---------------------------------------------
+    - Each entiry is related to exactly other entity 
+    - there should be one owning side and other inverse side 
+    - the foriegn key will be maintained by the owning side 
+
+
+        class User {                                        class Profile {
+
+            id                                                          id
+            name                                                        bio 
+                                                                        dob
+                                                                        .   ..
+            @OneToOne(cascade = {CascadeType.PERSIST, 
+            CascadeType.REMOVE}, fetch="FetchType.LAZY)                @OneToOne(mappedBy="profile")
+            Profile profile;                                            User user;
+        }                                                               }
+
+        user-table                              profile-table
+        id name profile_id                      id bio dob user_id      
+
+
+        User user = new User();
+        user.setName("Harsh");
+
+        Profile profile = new Profile();
+        profile.setBio("somebio");
+
+        user.setProfile(profile);
+
+        profileRepo.save(profile);
+        userRepo.save(user);
 
 
 
+    Default Fetch Policy
+    ----------------------------
+
+        @OneToOne               EAGER
 
 
 
+    OneToMany and ManyToOne BiDirectional Relationship
+    ---------------------------------------------------------
+            - a parent entity has a collection of child entities (OneToMany)
+            - a child entity is related to a single parent entity (ManyToOne)
+            - the foreign key should be maintained by the child table
 
 
+        class Department {                                class Employee {
+
+                int `id`;                                       int id;
+                String name;                                    String name;
+                                                                ....
+
+                @OneToMany(mappedBy="department")               @ManyToOne            
+                List<Employee> employees;                       Department department;                       
+
+        }                                                   }
+
+                                                        employee_table
+                                                                    FK
+                                                        id   name   department_id
+      
+
+      ManyToMany BiDirectional Relation
+      ---------------------------------
+
+        class Student {                                 class Course {
+
+
+            @ManyToMany                                     @ManyToMany
+            List<Course> courses;                           List<Student> students;
+
+
+        }                                                  }
+
+
+
+    - ManyToMany Self Relationship
+
+        Class InstaUser {
+
+            int id;
+            String name;
+            ...
+            ..
+            ..
+
+            @ManyToMany
+            List<InstaUser> followers = new ArrayList();
+
+            @ManyToMany
+            List<InstaUser> following = new ArrayList();
+
+        }
 
 
 
@@ -2781,7 +2869,7 @@ Default Strategies for Relationships in Tables
 Relationship	Foreign Key Placement	    Join Table Default	        Cascade Default
 @OneToOne	    Owning side holds FK	    @JoinTable if configured	No cascading by default.
 @OneToMany	    Owning side holds FK	    Not applicable	            No cascading by default.
-@ManyToOne	    Many-side holds FK	        Not applicable	            No cascading by default.
+@ManyToOne	    Owning side holds FK        Not applicable	            No cascading by default.
 @ManyToMany	    Join table for both	        @JoinTable required	        No cascading by default.
 
 3.Relationships

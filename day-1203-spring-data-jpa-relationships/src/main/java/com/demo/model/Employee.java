@@ -5,11 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Employee {
+public class Employee extends User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,10 +18,6 @@ public class Employee {
 	private String empName;
 	private String city;
 	private double salary;
-	
-	@OneToOne(cascade = {CascadeType.MERGE})
-	@JoinColumn(name = "FK_deptId")
-	private Department department;
 	
 	
 	public Employee() {
@@ -73,20 +70,4 @@ public class Employee {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-
-	@Override
-	public String toString() {
-		return "\n\t Employee [empId=" + empId + ", empName=" + empName + ", city=" + city + ", salary=" + salary + "]";
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-	
-	
-	
 }
