@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public class Employee {
     @JoinColumn(name = "dept_id", nullable = false)
     private Department department;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "employee_project",
         joinColumns = @JoinColumn(name = "emp_id"),
@@ -111,9 +112,12 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", email=" + email + ", city=" + city + ", salary="
-				+ salary + ", joiningDate=" + joiningDate
+				+ salary + ", joiningDate=" + joiningDate + ", department=" + department + ", projects=" + projects
 				+ "]";
 	}
+
+	
+
 
     // Getters and Setters
     

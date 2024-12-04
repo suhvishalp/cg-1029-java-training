@@ -18,16 +18,16 @@ public class Day1204SpringDataJpaQueryMethodsApplication {
 	
 	  EmployeeRepository empRepo = context.getBean(EmployeeRepository.class);
 	  
-	 // List<Employee> list = empRepo.fetchAllEmployeesByCity("Chicago");
+//	  List<Employee> list = empRepo.fetchAllEmployeesByCity("Chicago");
 	  
-//	  List<Employee> list = empRepo.findAllByDepartmentDeptName("HR");
-//	  list.forEach(System.out::println);
+	  List<Employee> list = empRepo.findAllByDepartmentDeptName("HR");
+	  list.forEach(System.out::println);
 	  
 //	  int count = empRepo.countEmployees();
 //	  System.out.println(count);
 	  
-	  int count = empRepo.countEmployeesByCity("Chicago");
-	  System.out.println(count);
+//	  int count = empRepo.countEmployeesByCity("Chicago");
+//	  System.out.println(count);
 	 
 	}
 
