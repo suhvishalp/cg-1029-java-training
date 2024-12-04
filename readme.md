@@ -3094,9 +3094,15 @@ Relationship	Foreign Key Placement	    Join Table Default	        Cascade Defaul
 Spring DATA JPA REFERECE
 https://www.petrikainulainen.net/spring-data-jpa-tutorial/#:~:text=Creating%20repositories%20that%20use%20the,CRUD%20operations%20for%20our%20entities.
 
+Entity Inheritance
+https://medium.com/@iampraveenkumar/mastering-jpa-inheritance-strategies-hibernate-6-x-jpa-3-x-spring-boot-3-x-06eecac1147a
+
+Relationships
+https://blog.stackademic.com/the-complete-guide-to-spring-data-jpa-building-a-bookstore-application-from-scratch-part-iii-8a1de3bc9949
 
 
 Query Methods in Spring Data JPA
+-----------------------------------------
 
 Query methods are predefined methods in Spring Data JPA repositories that allow you to derive queries based on method names.
 
