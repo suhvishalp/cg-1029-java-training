@@ -1415,3 +1415,414 @@ org.eclipse.core.internal.resources.ResourceException: Marker id 4448 not found.
 
 !ENTRY org.eclipse.lsp4e 1 0 2024-12-04 09:43:13.680
 !MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:11:04.573
+!MESSAGE Classpath changed for project: day-1203-spring-data-jpa-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:11:04.610
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-12-04 10:11:08.460
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+
+!ENTRY org.eclipse.lsp4e 1 0 2024-12-04 10:13:19.104
+!MESSAGE [Info]	ESLint server running in node v18.12.1
+!SESSION 2024-12-04 10:18:00.969 -----------------------------------------------
+eclipse.buildId=4.26.0.20221201-1200
+java.version=17.0.13
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/vishalshah/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/vishalshah/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-04 10:18:03.141
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.epp.mpc.core 4 0 2024-12-04 10:18:03.367
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.epp.mpc.core [331]
+  Unresolved requirement: Import-Package: org.apache.hc.client5.http; version="[5.1.0,5.2.0)"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1852)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1845)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1786)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1750)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1672)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
+
+!ENTRY org.eclipse.epp.mpc.ui 4 0 2024-12-04 10:18:03.392
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Could not resolve module: org.eclipse.epp.mpc.ui [333]
+  Unresolved requirement: Require-Bundle: org.eclipse.epp.mpc.core; bundle-version="[1.10.1,2.0.0)"
+    -> Bundle-SymbolicName: org.eclipse.epp.mpc.core; bundle-version="1.10.1.v20221110-1841"; singleton:="true"
+       org.eclipse.epp.mpc.core [331]
+         Unresolved requirement: Import-Package: org.apache.hc.client5.http; version="[5.1.0,5.2.0)"
+
+	at org.eclipse.osgi.container.Module.start(Module.java:463)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel$2.run(ModuleContainer.java:1852)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor$1$1.execute(EquinoxContainerAdaptor.java:136)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1845)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.incStartLevel(ModuleContainer.java:1786)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1750)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1672)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.dispatchEvent(ModuleContainer.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
+	at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:345)
+
+!ENTRY ch.qos.logback.classic 1 0 2024-12-04 10:18:16.701
+!MESSAGE Logback config file: /Users/vishalshah/cg-workspace-1029/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.1.0.20221015-0744.xml
+
+!ENTRY org.eclipse.jface 2 0 2024-12-04 10:18:20.455
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-04 10:18:20.455
+!MESSAGE A conflict occurred for ALT+SHIFT+X R:
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
+		Run the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.run,Run RAP Application,
+		Run RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.run"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-04 10:18:20.455
+!MESSAGE A conflict occurred for COMMAND+SHIFT+T:
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolinworkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-04 10:18:20.455
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.rename,Rename,
+		Rename the selected item,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.ui.edit.rename"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.edit.text.java.rename.element"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-04 10:18:20.455
+!MESSAGE A conflict occurred for ALT+SHIFT+D R:
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
+		Debug the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.wst.server.launchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug,Debug RAP Application,
+		Debug RAP Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.rap.tools.launch.RAPLaunchShortcut.debug"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:25.909
+!MESSAGE Boot project ADDED: 03javaconfig-solution
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:25.912
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:25.994
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-12-04 10:18:26.029
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_17.0.13.v20241023-1126/jre/bin/java
+-cp
+/Applications/Eclipse.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.47.0.202306150731/servers/spring-boot-language-server/BOOT-INF/classes:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.47.0.202306150731/servers/spring-boot-language-server/BOOT-INF/lib/*
+-Dsts.lsp.client=eclipse
+-Dlsp.completions.indentation.enable=true
+-Xmx1024m
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:TieredStopAtLevel=1
+-Xlog:jni+resolve=off
+-Dspring.config.location=file:/Applications/Eclipse.app/Contents/Eclipse/plugins/org.springframework.tooling.boot.ls_1.47.0.202306150731/servers/spring-boot-language-server/BOOT-INF/classes/application.properties
+-XX:ErrorFile=/Users/vishalshah/cg-workspace-1029/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1733287706021
+org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
+--languageserver.hover-timeout=225
+END
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:26.033
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2024-12-04 10:18:26.063
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 23927
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:26.074
+!MESSAGE Boot project ADDED: day-0212-spring-data-jpa-project-01
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:26.075
+!MESSAGE Boot project ADDED: day-1203-spring-data-jpa-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:26.105
+!MESSAGE Boot project ADDED: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 10:18:26.222
+!MESSAGE Boot project ADDED: day20-1127-springcore
+
+!ENTRY org.eclipse.lsp4e 4 0 2024-12-04 10:18:26.287
+!MESSAGE org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+!STACK 0
+java.lang.ClassNotFoundException: org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+	at org.eclipse.osgi.internal.loader.BundleLoader.generateException(BundleLoader.java:541)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass0(BundleLoader.java:536)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:416)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:622)
+	at org.eclipse.lsp4e.LanguageServersRegistry$ExtensionLanguageServerDefinition.getServerInterface(LanguageServersRegistry.java:196)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$1(LanguageServerWrapper.java:288)
+	at java.base/java.util.concurrent.CompletableFuture$UniRun.tryFire(CompletableFuture.java:787)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.eclipse.jface 2 0 2024-12-04 10:18:42.550
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-04 10:18:42.551
+!MESSAGE A conflict occurred for COMMAND+SHIFT+C:
+Binding(COMMAND+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.toggleLineCommentCommand,Toggle Line Comment,
+		,
+		Category(org.eclipse.tm4e.languageconfiguration.category,TM4E Language Configuration,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm4e.languageconfiguration.toggleLineCommentCommand"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(COMMAND+SHIFT+C,
+	ParameterizedCommand(Command(org.springframework.tooling.boot.ls.ToggleComment,Toggle Comment,
+		,
+		Category(org.springframework.ide.eclipse.commands,Spring Generic Text Editor,Spring Language Server Commands,true),
+		WorkbenchHandlerServiceHandler("org.springframework.tooling.boot.ls.ToggleComment"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:05:12.578
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:06:27.381
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:08:11.917
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:10:02.045
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:10:46.670
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:12:47.835
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:14:35.231
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:15:01.405
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:19:07.193
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:21:56.193
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:23:08.888
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:23:41.744
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:24:19.799
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:24:27.219
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:26:18.023
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:31:47.258
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:33:08.377
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:33:13.634
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:33:20.505
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:34:01.650
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:35:05.691
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:35:20.082
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:35:35.077
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:38:34.833
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:42:28.729
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:42:51.723
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:43:16.278
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:43:23.793
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:44:55.997
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:45:21.460
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:48:38.056
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-04 11:48:42.511
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:50:05.922
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:51:22.316
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:52:00.091
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:52:07.663
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:54:05.856
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:55:25.600
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:55:44.634
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:55:47.740
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:55:53.138
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:56:21.609
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:56:55.473
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-04 11:57:27.627
+!MESSAGE Classpath changed for project: day-1204-spring-data-jpa-query-methods

@@ -11,8 +11,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Employee.countEmployees", query = "SELECT count(e) FROM Employee e")
+})
 public class Employee {
 
     @Id
@@ -100,6 +105,13 @@ public class Employee {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", email=" + email + ", city=" + city + ", salary="
+				+ salary + ", joiningDate=" + joiningDate
+				+ "]";
 	}
 
     // Getters and Setters

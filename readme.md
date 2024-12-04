@@ -3148,6 +3148,7 @@ Syntax Rules:
 
         Modifying Queries
         Use @Modifying for update or delete operations.
+        
         @Modifying
         @Query("UPDATE Employee e SET e.salary = :salary WHERE e.id = :id")
         int updateEmployeeSalary(@Param("id") Long id, @Param("salary") Double salary);
