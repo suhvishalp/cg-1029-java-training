@@ -23,7 +23,10 @@ public class Day1204SpringDataJpaQueryMethodsApplication {
 //	  List<Employee> list = empRepo.findAllByDepartmentDeptName("HR");
 //	  list.forEach(System.out::println);
 	  
-	  int count = empRepo.countEmployees();
+//	  int count = empRepo.countEmployees();
+//	  System.out.println(count);
+	  
+	  int count = empRepo.countEmployeesByCity("Chicago");
 	  System.out.println(count);
 	 
 	}

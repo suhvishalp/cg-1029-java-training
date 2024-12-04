@@ -35,6 +35,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Query(name = "Employee.countEmployees")
 	int countEmployees();
 	
+	@Query(name="Employee.countEmployeesByCity")
+	int countEmployeesByCity(String city);
+	
 	@Query("SELECT count(*) FROM Employee e")
 	int getCount();
 	

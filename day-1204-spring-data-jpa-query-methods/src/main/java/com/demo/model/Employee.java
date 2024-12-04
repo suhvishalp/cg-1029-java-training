@@ -16,7 +16,8 @@ import jakarta.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Employee.countEmployees", query = "SELECT count(e) FROM Employee e")
+	@NamedQuery(name = "Employee.countEmployees", query = "SELECT count(e) FROM Employee e"),
+	@NamedQuery(name = "Employee.countEmployeesByCity", query = "SELECT count(e) FROM Employee e WHERE e.city=:city")
 })
 public class Employee {
 
