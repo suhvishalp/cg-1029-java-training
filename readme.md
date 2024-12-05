@@ -3148,7 +3148,7 @@ Syntax Rules:
 
         Modifying Queries
         Use @Modifying for update or delete operations.
-        
+
         @Modifying
         @Query("UPDATE Employee e SET e.salary = :salary WHERE e.id = :id")
         int updateEmployeeSalary(@Param("id") Long id, @Param("salary") Double salary);
@@ -3172,3 +3172,64 @@ Syntax Rules:
         Repository:
         @Query(name = "Employee.findByDepartmentName")
         List<Employee> findByDepartmentName(@Param("departmentName") String departmentName);
+
+
+
+REST - represetational state transfer 
+-------------------------------------------------
+
+
+REST API - 
+-----------------------
+
+    REST (Representational State Transfer) is an architectural style for designing networked applications. It relies on stateless, client-server communication, where resources are identified by URIs (Uniform Resource Identifiers).
+
+    Key Principles:
+     - Stateless: No client state is stored on the server.
+     - Uniform Interface: Use standard HTTP methods like GET, POST, PUT, DELETE.
+     - Layered System: Decouples client and server implementations.
+     - Cacheable: Responses can be cached for better performance.
+
+    Spring Boot for REST APIs
+        Spring Boot simplifies REST API development by providing an opinionated framework that reduces boilerplate code and facilitates quick application setup.
+
+        Key Features:
+            - Embedded servers like Tomcat, Jetty.
+            - Built-in support for JSON and XML.
+            - Auto-configuration and starter dependencies.
+            - Spring Data JPA integration for database operations.
+
+    Key Annotations:
+        @SpringBootApplication: Entry point for the application, which creates the container, performs the componentscan and enables auto configurtion.
+
+        @RestController: Combines @Controller and @ResponseBody for RESTful APIs.
+        @RequestMapping: Maps HTTP requests to handler methods.
+        @PathVariable and @RequestParam: Extract variables and parameters from URLs.
+        @RequestBody: Maps request body to a Java object.
+        @ResponseBody: Maps Java object to the HTTP response body.
+    
+    @Controller vs @RestController 
+
+            @Controller
+                Used in Spring MVC to define a controller that processes HTTP requests and returns "view" templates (like JSP, Thymeleaf, etc.) or other non-RESTful responses.
+
+                Methods in a @Controller typically return a view name that maps to a template for rendering a response (e.g., HTML).
+
+            @RestController
+                A specialization of @Controller designed for building RESTful web services. It simplifies development by automatically serializing Java objects into JSON (or XML) responses.
+
+                Combines @Controller and @ResponseBody, so all methods in a @RestController return "JSON or XML" directly, and you don’t need to annotate methods with @ResponseBody explicitly.
+
+                It is ideal for APIs that serve data to clients (e.g., frontend apps, mobile apps).
+
+        ResponseEntity
+        -----------------------
+            - ResponseEntity is a generic class used to customize and build HTTP responses. It allows you to:
+
+                   - Set HTTP status codes (e.g., 200 OK, 404 NOT FOUND).
+                   - Include custom headers in the response.
+                   - Send a response body containing data (e.g., JSON, XML, plain text).
+
+            You can customize the HTTP status code, headers, and response body based on the business logic.
+            Helps conform to REST standards by sending appropriate status codes and response data.
+            Easy to add additional headers, such as Content-Type, Authorization, or custom headers.
