@@ -3991,3 +3991,30 @@ java.lang.InterruptedException
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:16:17.483
 !MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:20:20.254
+!MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:33:01.447
+!MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:38:12.943
+!MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:39:09.457
+!MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-12-07 11:40:36.586
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-12-07 11:40:45.769
+!MESSAGE Classpath changed for project: day-1206-ecommerce-app-entity-relationships

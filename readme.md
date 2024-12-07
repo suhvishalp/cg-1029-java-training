@@ -3428,6 +3428,12 @@ AttributeDefinition Relationships
               class Category {
 
                 @OneToMany(orphanRemoval=true)
-                List<Category> subCategories;
+                List<Category> subCategories;           //10 subcategories
               }  
                 
+
+
+        class ProductType {
+
+            
+        }

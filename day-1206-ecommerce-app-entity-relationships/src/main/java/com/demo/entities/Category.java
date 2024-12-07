@@ -27,7 +27,7 @@ public class Category {
     @JsonBackReference
     private Category parentCategory;
 
-    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Category> subcategories;
 

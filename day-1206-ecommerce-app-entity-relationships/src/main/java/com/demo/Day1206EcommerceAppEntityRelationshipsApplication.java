@@ -6,8 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.demo.entities.Category;
-import com.demo.repositories.CategoryRepository;
+import com.demo.entities.AttributeDefinition;
+import com.demo.entities.ProductType;
+import com.demo.repositories.ProductRepository;
+import com.demo.repositories.ProductTypeRepository;
 
 @SpringBootApplication
 public class Day1206EcommerceAppEntityRelationshipsApplication {
@@ -54,15 +56,31 @@ public class Day1206EcommerceAppEntityRelationshipsApplication {
 //   
 //		
 		
+		ProductRepository productRepo =	context.getBean(ProductRepository.class);
+		
+		ProductTypeRepository productTypeRepo = context.getBean(ProductTypeRepository.class);
 		
 		
-//		// Create ProductType
+		// Create ProductType
 //		ProductType shirtType = new ProductType();
 //		shirtType.setName("Shirt");
 //		shirtType.setAttributes(List.of(
 //		    new AttributeDefinition("Size", AttributeType.ENUM, List.of("S", "M", "L", "XL")),
 //		    new AttributeDefinition("Color", AttributeType.ENUM, List.of("Red", "Blue", "Green"))
 //		));
+		
+		ProductType productType = productTypeRepo.findById(1L).orElse(null);
+		System.out.println(productType.getName());
+		productType.getAttributes()
+			.forEach(attribute -> System.out.println(attribute.getName() + " " + attribute.getType()));
+		
+		List<AttributeDefinition> list = productType.getAttributes();
+		
+		list.remove(1);
+		productTypeRepo.save(productType);
+//		
+		
+//		productTypeRepo.save(shirtType);
 //
 //		// Create Product
 //		Product shirt = new Product();
