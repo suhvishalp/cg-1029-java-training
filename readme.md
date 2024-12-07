@@ -3233,3 +3233,201 @@ REST API -
             You can customize the HTTP status code, headers, and response body based on the business logic.
             Helps conform to REST standards by sending appropriate status codes and response data.
             Easy to add additional headers, such as Content-Type, Authorization, or custom headers.
+
+
+
+
+
+            class Category {
+                id
+                name
+
+            
+                Category parentCat;
+            }
+
+
+
+            obj: PackagedFood
+
+            obj: xyz
+
+
+
+
+    class Category {
+
+            int id;
+            String name;
+            String description;
+
+            @ManyToOne
+            Category parentCategory;
+
+            @OneToMany(mappedBy="parentCategory")
+            List<Category> subCategories;
+
+    }
+
+
+    Books
+
+    Fiction     Non-Fiction     xx          xx
+
+
+
+
+    Product Relationships
+    Product and ProductType:
+
+    ManyToOne Relationship:
+    Each Product belongs to a single ProductType.
+    The ProductType defines shared attributes (e.g., "Shirt" may have attributes like size, color).
+    Use Case: Helps standardize attribute definitions across products of the same type.
+    Product and ProductVariant:
+
+    OneToMany Relationship:
+    A Product can have multiple variants.
+    Variants represent specific configurations of a product (e.g., size, color).
+    Use Case: A "Shirt" can have variants like "Size: M, Color: Red" and "Size: L, Color: Blue."
+    Product and Category:
+
+    ManyToMany Relationship:
+    A Product can belong to multiple categories.
+    Categories can have multiple products.
+    Use Case: A phone can belong to "Electronics," "Smartphones," and "Best Sellers."
+
+
+ProductVariant Relationships
+    ProductVariant and Product:
+
+    ManyToOne Relationship:
+    Each ProductVariant belongs to a single Product.
+    Use Case: Variants are tied to a specific product, ensuring proper grouping.
+    Variant Attributes:
+
+    Each variant has a Map<String, String> to define specific attribute values (e.g., Size: M, Color: Red).
+    These values are validated against the AttributeDefinition of the parent ProductType.
+
+
+ProductType Relationships
+    ProductType and Product:
+
+    OneToMany Relationship:
+    A ProductType can define multiple products.
+    Use Case: The ProductType ensures that all products of the same type (e.g., "Shirt") share consistent attributes.
+    ProductType and AttributeDefinition:
+
+    OneToMany Relationship:
+    Each ProductType defines a list of attributes (AttributeDefinition).
+    Use Case: Provides a reusable template for products, defining attributes like size, color, or material.
+
+AttributeDefinition Relationships
+    Attributes in ProductType:
+    Each AttributeDefinition belongs to a ProductType.
+    Attributes can specify:
+    Name (e.g., "Size").
+    Type (e.g., ENUM, TEXT).
+    Allowed values (e.g., ENUM: ["S", "M", "L"]).
+    Use Case: Ensures consistent validation and structure for product variants.
+
+
+        **IMP: DEfault strategies to represent the in RElationships in the database tables
+        ------------------------------------------------
+        @OneToOne 
+        @ManyToOne
+            - the default strategy to represent the relationship in the table 
+                is "joincolumn"
+            - in joincolumn strategy, it uses a foreign key column
+            - a foreign key column is created in the table that contains the 
+                relationship
+            - @JoinColumn annotation is used to specify the foreign key column in the relationship
+                - you can specifiy name of the FK column
+                - @JoinColumn(name="", nullable="", unique="", insertable="", columnDefinition="")
+
+
+           class Employee {                     class EmployeeDetails {
+                int id;                                 int id';
+                String name;                            String address, city, phonenumber;
+             
+                @OneToOne
+                EmployeeDetail detail;
+            }                                   }
+
+            employee table
+            id   name       FK:employeeDetails_id    
+
+
+        @OneToMany
+            - by default, @OneToMany uses "jointable" strategy if the relationship is "bidirectional"
+                -*otherwise, it uses @joincolumn
+
+            - @JoinTable annotation 
+                - to define the join table configuration 
+
+                   
+                   class Department {                   class Employee {
+
+                            @OneToMany
+                            @JoinTable(
+                                name="department_employee",
+                                joinColumns= @JoinColumn(name="department_id")
+                                inverseJoinColumns=@JoinColumn(name="employee_id")
+                                )
+                            )
+                            List<Employee> employees
+
+                   }                                    }
+
+                    department_employee table
+                    ----------------------------
+                      department_id         employee_id
+
+        @ManyToMany
+            - be default, @ManyToMany always uses "jointable" strategy 
+
+
+          
+    **IMP: @JsonManagedReference and @JsonBackReference 
+    -------------------------------------------------------
+        - these annotations belong to "Jackson library" which are used for JSON serialization
+            and deserilization
+        - when a parent-child relationship (bidirectional relationship) exists where both entities 
+            reference to each other, JSON serialization may enter into an infinite loop
+
+         @JsonManagedReference
+            - applied on the parent side of the relationship
+
+         @JsonBackReference 
+            - applied on the child side of the relationship
+
+                @Entity
+                public class Category {
+                    
+                    @Id
+                    @GeneratedValue(strategy = GenerationType.IDENTITY)
+                    private Long id;
+                    private String name;
+                    private String description;
+                
+
+                    @ManyToOne
+                    @JsonBackReference
+                    private Category parentCategory;
+
+                    @OneToMany(mappedBy = "parentCategory")
+                    @JsonManagedReference
+                    private List<Category> subcategories;
+                }
+
+
+        orphanRemoval
+        ------------------------
+            - when a child entity is removed from it's parent entity's collection
+                
+              class Category {
+
+                @OneToMany(orphanRemoval=true)
+                List<Category> subCategories;
+              }  
+                
