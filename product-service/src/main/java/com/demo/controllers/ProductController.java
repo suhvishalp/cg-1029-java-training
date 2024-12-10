@@ -1,10 +1,10 @@
 package com.demo.controllers;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.dto.ProductCreationRequest;
 import com.demo.dto.VariantCreationRequest;
-import com.demo.entities.Category;
 import com.demo.entities.Product;
 import com.demo.entities.ProductType;
 import com.demo.repositories.CategoryRepository;
@@ -31,6 +30,14 @@ public class ProductController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    
+    @GetMapping("/{id}")
+    public Product fetchProductById(@PathVariable long id) {
+    	
+    	return productRepository.findById(id).orElse(null);
+    	
+    }
 
     @PostMapping
     public ResponseEntity<Product> createProductWithVariants(@RequestBody ProductCreationRequest request) {
@@ -46,8 +53,8 @@ public class ProductController {
         product.setProductType(productType);
 
         // Assign Categories
-        List<Category> categories = categoryRepository.findAllById(request.getCategories());
-        product.setCategories(categories);
+       // List<Category> categories = categoryRepository.findAllById(request.getCategories());
+       // product.setCategories(categories);
 
         // Add Variants
         for (VariantCreationRequest variantRequest : request.getVariants()) {

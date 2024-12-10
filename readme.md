@@ -3464,3 +3464,7 @@ AttributeDefinition Relationships
 application.properties file
 -------------------------------------
     - to externilise the configuration required for the project
+
+
+
+https://www.ignek.com/blog/various-approaches-of-api-integration-in-spring-boot/

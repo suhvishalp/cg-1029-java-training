@@ -4,7 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductCreationRequest {
-    private String name;
+    @Override
+	public String toString() {
+		return "ProductCreationRequest [name=" + name + ", description=" + description + ", price=" + price
+				+ ", productTypeId=" + productTypeId + ", categories=" + categories + ", variants=" + variants + "]";
+	}
+
+	private String name;
     private String description;
     private BigDecimal price;
     private Long productTypeId;
