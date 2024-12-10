@@ -3390,16 +3390,24 @@ AttributeDefinition Relationships
           
     **IMP: @JsonManagedReference and @JsonBackReference 
     -------------------------------------------------------
-        - these annotations belong to "Jackson library" which are used for JSON serialization
+        - these annotations belong to "Jackson library" which are used for  JSON serialization
             and deserilization
-        - when a parent-child relationship (bidirectional relationship) exists where both entities 
-            reference to each other, JSON serialization may enter into an infinite loop
+        - when a parent-child relationship (bidirectional relationship) exists where both entities reference to each other, JSON serialization may enter into an infinite loop
 
          @JsonManagedReference
             - applied on the parent side of the relationship
 
          @JsonBackReference 
             - applied on the child side of the relationship
+
+
+
+            class Department{                   class Employee {
+
+                @JsonManagedReference               @JSONBackReference
+                List<Employee> employees;           Department department;
+            }                                   }
+
 
                 @Entity
                 public class Category {
@@ -3435,5 +3443,24 @@ AttributeDefinition Relationships
 
         class ProductType {
 
-            
+            @OneToMany(cascase=CascaseType.All, orphanRemoval=true)
+            List<AttributeDefinition> attributes;
+
         }
+
+
+        PT1 - Clothing-Product-Type
+                |->Size:"large"
+                |->Color:"blue"
+                
+
+
+        producttype table                       attributeDefin
+        id   ptname   ..  ..                    id  
+
+
+
+
+application.properties file
+-------------------------------------
+    - to externilise the configuration required for the project
