@@ -3468,3 +3468,251 @@ application.properties file
 
 
 https://www.ignek.com/blog/various-approaches-of-api-integration-in-spring-boot/
+
+Spring Framework
+------------------------
+    - Spring Core
+    - Spring Data 
+        - spring data jpa
+        - spring data jdbc
+        - spring data mongodb
+    - Spring Web
+    - Spring Cloud
+        - Spring Cloud Config
+        - Spring Cloud OpenFeign
+        - Spring Cloud Gateway
+        - Spring Cloud Netflix
+
+
+
+
+
+Spring Cloud Config
+------------------------------
+    
+    Spring Cloud Config provides server-side and client-side support for managing externalized configuration in a distributed system. It enables centralized management of configuration files across multiple applications and environments.
+
+    Key Features
+        - Centralized Configuration:
+             Store configuration files in a central repository (e.g., Git, SVN).
+            Access shared and environment-specific configurations across multiple microservices.
+    
+        - Dynamic Updates:
+            Supports runtime refresh of configurations using @RefreshScope.
+    
+        - Environment-Specific Configurations:
+            Config files can be specific to environments (e.g., application-dev.properties, application-prod.properties).
+    
+        - Version Control:
+            Integrates with Git, allowing versioning of configuration files.
+        
+        - Secure Configurations:
+            Use Spring Cloud Config encryption/decryption features for sensitive data.
+    
+     Architecture
+
+        - Config Server:
+            A central server that serves configuration files to client applications.
+            Uses a backend repository (e.g., Git) to store configurations.
+        
+        - Config Clients:
+            Applications that fetch configuration from the Config Server at startup or runtime.
+    
+     Steps to Set Up Spring Cloud Config
+        1. Setting Up the Config Server
+
+        Add dependencies to pom.xml:
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-server</artifactId>
+            </dependency>
+    
+        Enable Config Server:
+
+        @SpringBootApplication
+        @EnableConfigServer
+        public class ConfigServerApplication {
+            public static void main(String[] args) {
+                SpringApplication.run(ConfigServerApplication.class, args);
+            }
+        }
+    
+        Configure application.properties:
+
+        server.port=8888
+        spring.application.name=config-server
+        spring.cloud.config.server.git.uri=https://github.com/your-repo/config-repo
+        
+        Start the Config Server.
+
+    2. Setting Up the Config Client
+    
+        Add dependencies to pom.xml:
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+    Create bootstrap.properties / application.properties:
+
+        spring.application.name=client-service
+        spring.cloud.config.uri=http://localhost:8888
+
+    Use @Value or @ConfigurationProperties to access configuration values:
+
+
+    @Value("${example.property}")
+    private String exampleProperty;
+    
+    Common Configuration Files
+        application.properties: Common configuration shared by all services.
+        service-name.properties: Service-specific configurations.
+        application-{profile}.properties: Environment-specific configurations (e.g., application-dev.properties).
+    
+    Dynamic Refresh of Configurations
+        Annotate beans with @RefreshScope to refresh configuration without restarting the application.
+        Use the /actuator/refresh endpoint (requires Spring Boot Actuator).
+    
+    Best Practices
+        - Secure Sensitive Data:
+                Use Spring Cloud Config encryption for properties like passwords or API keys.
+        -  Version Control for Config Files:
+                Use Git for tracking changes to configurations.
+        
+        - Environment-Specific Configurations:
+            Maintain separate configurations for development, staging, and production environments.
+
+        - Fall Back to Local Properties:
+            Always provide default configurations in case the Config Server is unreachable.
+
+
+
+Profiles
+--------------
+    Spring Profiles provide a way to segregate parts of your application configuration and make it be available only in certain environments i.e. dev, prod, test
+
+    application.properties 
+    application-dev.properties
+    application-prod.properties 
+
+    <servicename>-dev.properties
+     <servicename>-prod.properties
+      <servicename>-test.properties
+
+Service-to-Service Communication
+------------------------------------------
+    Service-to-service communication is a fundamental aspect of microservices architecture, enabling different services to interact with each other. It can be achieved through synchronous or asynchronous methods based on the use case.
+
+    Communication Types
+    1. Synchronous Communication
+        Involves direct communication between services.
+        The caller waits for the response from the called service.
+
+        Commonly implemented using:
+         - HTTP/REST (e.g., RestTemplate or WebClient)
+         - gRPC (Google's Remote Procedure Call framework)
+
+                String userDetails = restTemplate.getForObject("http://USER-SERVICE/users/" + id, String.class);
+
+    
+    2. Asynchronous Communication
+        Involves communication where the caller does not wait for the response.
+       
+        Commonly implemented using:
+            - Message Queues (e.g., RabbitMQ, Kafka, AWS SQS, GCP Pub/sub)
+            - Event-Driven Architecture (e.g., using Spring Cloud Stream)
+
+
+Spring Cloud OpenFeign
+------------------------------
+    OpenFeign is a declarative REST client in Spring Cloud that simplifies communication between microservices by providing a higher-level abstraction for making HTTP requests. 
+    
+    It eliminates the need for manual HTTP client code like RestTemplate or WebClient by using annotations to define HTTP requests.
+
+    Key Features of OpenFeign
+        - Declarative Approach: Define REST client interfaces with annotations.
+        - Integration with Spring Cloud: Supports service discovery (e.g., Eureka) for dynamic URLs.
+        - Load Balancing: Works with Ribbon or Spring Cloud LoadBalancer for client-side load balancing.
+        - Resilience: Can integrate with Resilience4j for retries and circuit breakers.
+        - Customizable: Allows custom headers, interceptors, and configurations.
+    
+    Steps to Use OpenFeign
+
+        1. Add Dependencies
+        Add the following dependencies in your pom.xml:
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+            </dependency>
+        </dependencies>
+
+        2. Enable Feign Clients
+        Annotate your main Spring Boot application class with @EnableFeignClients:
+
+        @SpringBootApplication
+        @EnableFeignClients
+        public class Application {
+            public static void main(String[] args) {
+                SpringApplication.run(Application.class, args);
+            }
+        }
+
+    3. Define a Feign Client
+        Create an interface for the external service you want to communicate with.
+
+        For example, let's say you want the Order Service to call the User Service.
+
+        User Service API:
+
+        @RestController
+        @RequestMapping("/users")
+        public class UserController {
+
+            @GetMapping("/{id}")
+            public String getUser(@PathVariable String id) {
+                return "User details for ID: " + id;
+            }
+        }
+
+
+    Feign Client in Order Service:
+
+        @FeignClient(name = "user-service", url = "http://localhost:8081")
+        public interface UserClient {
+
+            @GetMapping("/users/{id}")
+            String getUserById(@PathVariable("id") String id);
+        }
+
+    4. Use the Feign Client
+    
+        Inject the Feign client into your service or controller and call its methods:
+
+        @RestController
+        @RequestMapping("/orders")
+        public class OrderController {
+
+            @Autowired
+            private UserClient userClient;
+
+            @GetMapping("/{id}")
+            public String getOrderWithUser(@PathVariable String id) {
+                String userDetails = userClient.getUserById(id);
+                return "Order details for ID: " + id + " with " + userDetails;
+            }
+        }
+
+
+    Spring Cloud Netflix
+    ----------------------------------
+
+            - Spring Cloud Netflix Eureka
+                - used for service discovery & registry
+
+            - Implementing a Eureka Server for service registry is as easy as:
+
+                    1. adding spring-cloud-starter-netflix-eureka-server to the dependencies
+                    2. enabling the Eureka Server in a @SpringBootApplication by annotating it with @EnableEurekaServer
+                    3. configuring some properties
